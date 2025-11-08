@@ -65,4 +65,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'youtube-crealify.firebasestorage.app',
     iosBundleId: 'com.example.youtubeClone',
   );
+
 }

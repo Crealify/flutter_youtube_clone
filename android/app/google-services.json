@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "125029876091",
+    "project_id": "youtube-crealify",
+    "storage_bucket": "youtube-crealify.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:125029876091:android:5f8cda96bee9570e103dde",
+        "android_client_info": {
+          "package_name": "com.example.youtube_clone"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9xmDQIETN6HNWgIfGVAE78XohLTHP8rA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
