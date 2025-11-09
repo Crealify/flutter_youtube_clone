@@ -1,15 +1,12 @@
-
-import 'dart:convert';
-import 'dart:ffi';
-
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 class UserModel {
   final String displayName;
   final String username;
   final String email;
   final String profilePic;
-  final List subscriptions;
+  final List<String> subscriptions;
   final int videos;
+  final String userId;
   final String description;
   final String type;
   UserModel({
@@ -19,11 +16,10 @@ class UserModel {
     required this.profilePic,
     required this.subscriptions,
     required this.videos,
+    required this.userId,
     required this.description,
     required this.type,
   });
-
-
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -33,6 +29,7 @@ class UserModel {
       'profilePic': profilePic,
       'subscriptions': subscriptions,
       'videos': videos,
+      'userId': userId,
       'description': description,
       'type': type,
     };
@@ -44,14 +41,11 @@ class UserModel {
       username: map['username'] as String,
       email: map['email'] as String,
       profilePic: map['profilePic'] as String,
-      subscriptions: List.from((map['subscriptions'] as List),
+      subscriptions: List<String>.from(map['subscriptions'] ?? []),
       videos: map['videos'] as int,
+      userId: map['userId'] as String,
       description: map['description'] as String,
       type: map['type'] as String,
     );
   }
-
-  String toJson() => json.encode(toMap());
-
-  factory UserModel.fromJson(String source) => UserModel.fromMap(json.decode(source) as Map<String, dynamic>);
 }

@@ -1,5 +1,4 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:ffi';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -14,18 +13,20 @@ class UserDataService {
     required String username,
     required String email,
     required String profilePic,
-    required List subscriptions,
+    required List<String> subscriptions,
     required int videos,
+    required String userId,
     required String description,
     required String type,
   }) async {
-    UserModel user = UserModel(
+    UserModel user = userModel(
       displayName: displayName,
       username: username,
       email: email,
       profilePic: profilePic,
       subscriptions: subscriptions,
       videos: videos,
+      userId: userId,
       description: description,
       type: type,
     );
