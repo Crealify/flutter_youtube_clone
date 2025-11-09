@@ -1,4 +1,6 @@
+
 import 'dart:convert';
+import 'dart:ffi';
 
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 class UserModel {
@@ -6,8 +8,8 @@ class UserModel {
   final String username;
   final String email;
   final String profilePic;
-  final String subscriptions;
-  final String videos;
+  final List subscriptions;
+  final int videos;
   final String description;
   final String type;
   UserModel({
@@ -20,6 +22,8 @@ class UserModel {
     required this.description,
     required this.type,
   });
+
+
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -40,8 +44,8 @@ class UserModel {
       username: map['username'] as String,
       email: map['email'] as String,
       profilePic: map['profilePic'] as String,
-      subscriptions: map['subscriptions'] as String,
-      videos: map['videos'] as String,
+      subscriptions: List.from((map['subscriptions'] as List),
+      videos: map['videos'] as int,
       description: map['description'] as String,
       type: map['type'] as String,
     );
