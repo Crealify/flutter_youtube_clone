@@ -12,7 +12,7 @@ class UserModel {
   UserModel({
     required this.displayName,
     required this.username,
-    required this.email,
+    required this.email, 
     required this.profilePic,
     required this.subscriptions,
     required this.videos,

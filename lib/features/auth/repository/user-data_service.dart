@@ -19,14 +19,14 @@ class UserDataService {
     required String description,
     required String type,
   }) async {
-    UserModel user = userModel(
+    UserModel user = UserModel(
       displayName: displayName,
       username: username,
       email: email,
       profilePic: profilePic,
-      subscriptions: subscriptions,
-      videos: videos,
-      userId: userId,
+      subscriptions: [],
+      videos: 0,
+      userId: auth.currentUser!.uid,
       description: description,
       type: type,
     );
