@@ -55,20 +55,27 @@ class _UsernamePageState extends State<UsernamePage> {
               padding: EdgeInsets.only(right: 15, left: 15),
               child: Form(
                 child: TextFormField(
+                  onChanged: (username) {
+                    validaeUsername();
+                  },
+                  autovalidateMode: AutovalidateMode.always,
+                  validator: (username) {},
                   key: formKey,
                   controller: usernameController,
-                  decoration: const InputDecoration(
-                    suffixIcon: Icon(Icons.verified_user_rounded),
-                    suffixIconColor: Colors.green,
+                  decoration: InputDecoration(
+                    suffixIcon: isValidate
+                        ? const Icon(Icons.verified_user_rounded)
+                        : const Icon(Icons.cancel),
+                    suffixIconColor: isValidate ? Colors.green : Colors.red,
 
                     hintText: "Insert Username",
-                    border: OutlineInputBorder(
+                    border: const OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.blue),
                     ),
-                    enabledBorder: OutlineInputBorder(
+                    enabledBorder: const OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.blue),
                     ),
-                    focusedBorder: OutlineInputBorder(
+                    focusedBorder: const OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.green),
                     ),
                   ),
