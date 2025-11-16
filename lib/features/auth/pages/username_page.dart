@@ -89,7 +89,7 @@ class _UsernamePageState extends State<UsernamePage> {
               child: FlatButton(
                 text: "CONTINUE",
                 onPressed: () {},
-                colour: Colors.green,
+                colour: isValidate ? Colors.green : Colors.green.shade100,
               ),
             ),
           ],
