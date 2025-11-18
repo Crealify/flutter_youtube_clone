@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:youtube_clone/features/auth/pages/flat_button.dart';
-import 'package:youtube_clone/features/auth/repository/user-data_service.dart';
+import 'package:youtube_clone/features/auth/repository/user_data_service.dart';
 
 final formKey = GlobalKey<FormState>();
 

@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:youtube_clone/features/auth/pages/loader.dart';
 import 'package:youtube_clone/home_page.dart';
-// import 'package:youtube_clone/features/auth/pages/home_page.dart';
 import 'package:youtube_clone/features/auth/pages/login_page.dart';
 import 'package:youtube_clone/features/auth/pages/username_page.dart';
 import 'package:youtube_clone/firebase_options.dart';
@@ -39,7 +38,7 @@ class MyApp extends ConsumerWidget {
                 .snapshots(),
             builder: (context, snapshot) {
               final user = FirebaseAuth.instance.currentUser;
-              if (snapshot.hasData && !snapshot.data!.exists) {
+              if (!snapshot.hasData && !snapshot.data!.exists) {
                 return UsernamePage(
                   displayName: user!.displayName!,
                   profilePic: user.photoURL!,
