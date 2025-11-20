@@ -114,8 +114,8 @@ class _UsernamePageState extends ConsumerState<UsernamePage> {
                               description: "",
                               subscriptions: [],
                               videos: 0,
-                              userId: '',
-                              type: '',
+                              userId: "",
+                              type: "user",
                             )
                       : null;
                   // add user data inside databeas

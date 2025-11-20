@@ -38,7 +38,8 @@ class MyApp extends ConsumerWidget {
                 .snapshots(),
             builder: (context, snapshot) {
               final user = FirebaseAuth.instance.currentUser;
-              if (!snapshot.hasData && !snapshot.data!.exists) {
+              // if (!snapshot.hasData || !(snapshot.data?.exists ?? false)) {
+              if (!snapshot.hasData || !snapshot.data!.exists) {
                 return UsernamePage(
                   displayName: user!.displayName!,
                   profilePic: user.photoURL!,

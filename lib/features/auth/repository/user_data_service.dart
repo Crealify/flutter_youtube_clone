@@ -36,7 +36,7 @@ class UserDataService {
       videos: 0,
       userId: auth.currentUser!.uid,
       description: description,
-      type: "user",
+      type: type,
     );
 
     await firestore
