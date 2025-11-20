@@ -33,8 +33,8 @@ class _UsernamePageState extends ConsumerState<UsernamePage> {
     String? targetedUsername;
 
     for (var user in users) {
-      if (usernameController.text == user.data()['username']) {
-        targetedUsername = user.data()['username'];
+      if (usernameController.text == user.data()["username"]) {
+        targetedUsername = user.data()["username"];
         isValidate = false;
         setState(() {});
       }
