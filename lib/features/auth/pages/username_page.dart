@@ -28,7 +28,7 @@ class _UsernamePageState extends ConsumerState<UsernamePage> {
   bool isValidate = true;
 
   void validaeUsername() async {
-    final usersMap = await FirebaseFirestore.instance.collection("user").get();
+    final usersMap = await FirebaseFirestore.instance.collection("users").get();
     final users = usersMap.docs.map((user) => user).toList();
     String? targetedUsername;
 
