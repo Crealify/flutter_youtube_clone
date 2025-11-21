@@ -49,41 +49,27 @@ This project is a **YouTube Clone** built using **Flutter + Firebase**, featurin
 ## 📁 Folder Structure
 
 lib/
-
 │
 ├── features/
-
 │ ├── auth/
-
 │ ├── home/
-
 │ ├── video/
-
 │ ├── channel/
-
 │ └── comments/
-
 │
 ├── common/
-
 │
 ├── core/
-
 │
 ├── models/
-
 │
 └── main.dart
-
-yaml
-
 
 ---
 
 ## 🚀 Getting Started
 
 ### 1️⃣ Clone the Repository
-
 git clone https://github.com/Crealify/youtube_clone.git
 cd youtube_clone
 
