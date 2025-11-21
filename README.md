@@ -90,13 +90,12 @@ Web
 ---
 
 ➤ Add configuration files:
-
-pgsql
+```text
 
 android/app/google-services.json
 ios/Runner/GoogleService-Info.plist
 web/firebase-config.js  (or inside index.html)
-
+```
 ---
 
 Enable the following Firebase services:
