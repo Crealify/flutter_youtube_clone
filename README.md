@@ -91,34 +91,39 @@ assets/screenshots/home.png
 assets/screenshots/player.png
 assets/screenshots/upload.png
 
-🗺 Roadmap
 
- Shorts UI
+---
 
- Notifications System
+# 🗺 Roadmap
 
- Video Categories
+- Shorts UI  
+- Notifications System  
+- Video Categories  
+- Offline Downloads  
+- Creator Analytics Dashboard  
 
- Offline Downloads
+---
 
- Creator Analytics Dashboard
+# 🤝 Contributing
 
-🤝 Contributing
-
-Contributions are welcome!
+Contributions are welcome!  
 Feel free to open an issue or submit a pull request.
 
-👤 Author
+---
 
-Crealify
-GitHub: https://github.com/Crealify
+# 👤 Author
 
-LinkedIn: https://linkedin.com/in/Crealify
+Crealify  
+GitHub: https://github.com/Crealify  
+LinkedIn: https://linkedin.com/in/Crealify  
+Email: your-email@example.com  
 
-Email: your-email@example.com
+---
 
-📄 License
+# 📄 License
 
 This project is licensed under the MIT License.
 
-<p align="center"> Made with Crealify using Flutter </p>
+---
+
+**Made with Crealify using Flutter**
