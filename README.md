@@ -49,48 +49,107 @@ This project is a **YouTube Clone** built using **Flutter + Firebase**, featurin
 ## 📁 Folder Structure
 
 lib/
+
+│
 ├── features/
-│   ├── auth/
-│   ├── home/
-│   ├── video/
-│   ├── channel/
-│   └── comments/
+
+│ ├── auth/
+
+│ ├── home/
+
+│ ├── video/
+
+│ ├── channel/
+
+│ └── comments/
+
+│
 ├── common/
+
+│
 ├── core/
+
+│
 ├── models/
+
+│
 └── main.dart
 
-🚀 Getting Started
-1️⃣ Clone the Repository
+yaml
+
+
+---
+
+## 🚀 Getting Started
+
+### 1️⃣ Clone the Repository
+
 git clone https://github.com/Crealify/youtube_clone.git
 cd youtube_clone
 
+---
+
 2️⃣ Install Dependencies
+
 flutter pub get
 
-3️⃣ Set Up Firebase
+---
 
-Create Firebase project
+3️⃣ Firebase Setup
+➤ Create a new Firebase project
 
-Add Android, iOS & Web apps
+➤ Add apps for:
 
-Download your configuration files:
+Android
+
+iOS
+
+Web
+
+---
+
+➤ Add configuration files:
+
+pgsql
 
 android/app/google-services.json
 ios/Runner/GoogleService-Info.plist
-web/firebase-config.js   (or inside index.html)
+web/firebase-config.js  (or inside index.html)
 
-4️⃣ Run App
+---
+
+Enable the following Firebase services:
+
+Firebase Authentication (Email/Password or Google)
+
+Firestore Database
+
+Firebase Storage
+
+Firebase Hosting (optional)
+
+Cloud Functions (optional for advanced features)
+
+---
+
+4️⃣ Run the App
+
 flutter run
+
+---
 
 📸 Screenshots
 
-Add your screenshots in /assets/screenshots/.
+Add your screenshots inside:
+assets/screenshots/
 
+---
+
+Recommended filenames:
 assets/screenshots/home.png
 assets/screenshots/player.png
 assets/screenshots/upload.png
-
+Screenshots will appear here once added.
 
 ---
 
