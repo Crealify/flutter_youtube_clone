@@ -67,7 +67,7 @@ lib/
 ├── core/
 ├── models/
 └── main.dart
-
+```
 ---
 
 ## 🚀 Getting Started
