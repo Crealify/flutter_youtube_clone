@@ -47,22 +47,25 @@ This project is a **YouTube Clone** built using **Flutter + Firebase**, featurin
 ---
 
 ## 📁 Folder Structure
+# 🎬 YouTube Clone (Flutter + Firebase)
 
+A full-featured YouTube-style mobile application built using **Flutter**, **Riverpod**, and **Firebase**.  
+Includes authentication, video upload, playback, comments, channels, and more.
+
+---
+
+## 📁 Folder Structure
+```text
 lib/
-│
 ├── features/
-│ ├── auth/
-│ ├── home/
-│ ├── video/
-│ ├── channel/
-│ └── comments/
-│
+│   ├── auth/
+│   ├── home/
+│   ├── video/
+│   ├── channel/
+│   └── comments/
 ├── common/
-│
 ├── core/
-│
 ├── models/
-│
 └── main.dart
 
 ---
