@@ -8,6 +8,7 @@ import 'package:youtube_clone/features/channel/my_channel/pages/my_channel_scree
 import 'package:youtube_clone/features/auth/pages/login_page.dart';
 import 'package:youtube_clone/features/auth/pages/username_page.dart';
 import 'package:youtube_clone/firebase_options.dart';
+import 'package:youtube_clone/home_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -48,8 +49,8 @@ class MyApp extends ConsumerWidget {
               } else if (snapshot.connectionState == ConnectionState.waiting) {
                 return Loader();
               } else {
-                // return HomePage();
-                return MyChannelScreen();
+                return HomePage();
+                // return MyChannelScreen();
               }
             },
           );
