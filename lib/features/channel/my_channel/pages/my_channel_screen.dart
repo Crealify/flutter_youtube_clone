@@ -8,93 +8,107 @@ class MyChannelScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 20),
-          child: Column(
-            children: [
-              const Center(
-                child: CircleAvatar(
-                  radius: 50,
-                  backgroundColor: Colors.grey,
-                  // backgroundImage: AssetImage('assets/images/youtube-logo.jpg'),
-                ),
-              ),
-
-              Padding(
-                padding: const EdgeInsets.only(top: 10, bottom: 4),
-                child: Text(
-                  'Crealify',
-                  style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
-                ),
-              ),
-
-              Padding(
-                padding: const EdgeInsets.only(bottom: 10),
-                child: RichText(
-                  text: const TextSpan(
-                    style: TextStyle(color: Colors.blueGrey),
-                    children: [
-                      TextSpan(text: ' @Crealify •'),
-                      TextSpan(text: ' 0 Subscriber •'),
-                      TextSpan(text: ' 0 Videos'),
-                    ],
+      body: DefaultTabController(
+        length: 7,
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 20),
+            child: Column(
+              children: [
+                const Center(
+                  child: CircleAvatar(
+                    radius: 50,
+                    backgroundColor: Colors.grey,
+                    // backgroundImage: AssetImage('assets/images/youtube-logo.jpg'),
                   ),
                 ),
-              ),
-              const Text(
-                "More about Crealify!",
-                textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.black),
-              ),
 
-              Padding(
-                padding: const EdgeInsets.only(top: 16),
-                child: Row(
-                  children: [
-                    Expanded(
-                      flex: 3,
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, bottom: 4),
+                  child: Text(
+                    'Crealify',
+                    style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
+                  ),
+                ),
 
-                      child: Container(
-                        height: 40,
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: RichText(
+                    text: const TextSpan(
+                      style: TextStyle(color: Colors.blueGrey),
+                      children: [
+                        TextSpan(text: ' @Crealify •'),
+                        TextSpan(text: ' 0 Subscriber •'),
+                        TextSpan(text: ' 0 Videos'),
+                      ],
+                    ),
+                  ),
+                ),
+                const Text(
+                  "More about Crealify!",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.black),
+                ),
 
-                        decoration: const BoxDecoration(
-                          color: softBlueGreyBackGround,
-                          borderRadius: BorderRadius.all(Radius.circular(9)),
-                        ),
-                        child: TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            "Manage Videos",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              // fontSize: 10,
+                Padding(
+                  padding: const EdgeInsets.only(top: 16),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        flex: 3,
+
+                        child: Container(
+                          height: 40,
+
+                          decoration: const BoxDecoration(
+                            color: softBlueGreyBackGround,
+                            borderRadius: BorderRadius.all(Radius.circular(9)),
+                          ),
+                          child: TextButton(
+                            onPressed: () {},
+                            child: Text(
+                              "Manage Videos",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                // fontSize: 10,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                    Expanded(
-                      child: ImageButton(
-                        image: "pen.png",
-                        onPressed: () {},
-                        haveColor: true,
+                      Expanded(
+                        child: ImageButton(
+                          image: "pen.png",
+                          onPressed: () {},
+                          haveColor: true,
+                        ),
                       ),
-                    ),
-                    Expanded(
-                      child: ImageButton(
-                        image: "time-watched.png",
-                        onPressed: () {},
-                        haveColor: true,
+                      Expanded(
+                        child: ImageButton(
+                          image: "time-watched.png",
+                          onPressed: () {},
+                          haveColor: true,
+                        ),
                       ),
-                    ),
+                    ],
+                  ),
+                ),
+
+                // tab bar
+                TabBar(
+                  tabs: [
+                    Text("Home"),
+                    Text("Videos"),
+                    Text("Shorts"),
+                    Text("Community"),
+                    Text("Playlists"),
+                    Text("Channels"),
+                    Text("About"),
                   ],
                 ),
-              ),
-
-              
-            ],
+              ],
+            ),
           ),
         ),
       ),
