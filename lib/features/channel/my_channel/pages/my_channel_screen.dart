@@ -66,7 +66,12 @@ class MyChannelScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                 
+                  SizedBox(width: 10),
+                  ImageButton(
+                    image: "pen.png",
+                    onPressed: () {},
+                    haveColor: true,
+                  ),
                 ],
               ),
             ],

@@ -28,16 +28,17 @@ class HomePage extends StatelessWidget {
                     child: SizedBox(
                       height: 42,
                       child: ImageButton(
-                        Image.asset("assets/icons/cast.png"),
                         onPressed: () {},
                         haveColor: false,
+                        image: '',
                       ),
                     ),
                   ),
                   SizedBox(
                     height: 38,
                     child: ImageButton(
-                      Image.asset("assets/icons/notification.png"),
+                      image: 'notification.png',
+                      // image: Image.asset("assets/icons/notification.png"),
                       onPressed: () {},
                       haveColor: false,
                     ),
@@ -47,7 +48,8 @@ class HomePage extends StatelessWidget {
                     child: SizedBox(
                       height: 38,
                       child: ImageButton(
-                        Image.asset("assets/icons/search.png"),
+                        image: 'search.png',
+
                         onPressed: () {},
                         haveColor: false,
                       ),

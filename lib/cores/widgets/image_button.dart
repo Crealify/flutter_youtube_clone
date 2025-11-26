@@ -1,23 +1,34 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
-class ImageButton extends StatelessWidget {
-  final Image image;
-  final VoidCallback onPressed;
-  final bool haveColor;
+import 'package:youtube_clone/cores/colors.dart';
 
-  const ImageButton(
-    this.image, {
+class ImageButton extends StatelessWidget {
+  final VoidCallback onPressed;
+  final String image;
+  final bool haveColor;
+  const ImageButton({
     super.key,
     required this.onPressed,
-    this.haveColor = true,
+    required this.image,
+    required this.haveColor,
   });
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      icon: image,
-      color: haveColor ? Colors.black : null,
-      onPressed: onPressed,
+    return GestureDetector(
+      onTap: onPressed,
+      child: Padding(
+        padding: const EdgeInsets.only(left: 4, right: 4),
+        child: Container(
+          padding: const EdgeInsets.only(top: 7.6, bottom: 7.6),
+          decoration: BoxDecoration(
+            color: haveColor ? softBlueGreyBackGround : null,
+            borderRadius: const BorderRadius.all(Radius.circular(12)),
+          ),
+          child: Image.asset("assets/icons/$image", height: 23),
+        ),
+      ),
     );
   }
 }
