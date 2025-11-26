@@ -1,4 +1,3 @@
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -20,19 +19,19 @@ class MyChannelScreen extends ConsumerWidget {
         .when(
           data: (currentUser) => DefaultTabController(
             length: 7,
-            child: const Scaffold(
+            child: Scaffold( 
               body: SafeArea(
                 child: Padding(
-                  padding: EdgeInsets.only(top: 10),
+                  padding: const EdgeInsets.only(top: 10),
                   child: Column(
                     children: [
                       // top header
-                      TopHeader(),
-                      Text("More about Crealify!"),
-                      TapBottons(),
+                      TopHeader(user: currentUser),
+                      const Text("More about Crealify!"),
+                      const TapBottons(),
                       // tab bar
-                      TapBarPage(),
-                      TapViewPages(),
+                      const TapBarPage(),
+                      const TapViewPages(),
                     ],
                   ),
                 ),

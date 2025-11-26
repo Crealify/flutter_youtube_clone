@@ -1,24 +1,28 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:youtube_clone/features/auth/model/user_model.dart';
 
 class TopHeader extends StatelessWidget {
-  const TopHeader({super.key});
+  final UserModel user;
+  const TopHeader({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Center(
+        Center(
           child: CircleAvatar(
             radius: 50,
             backgroundColor: Colors.grey,
-            // backgroundImage: AssetImage('assets/images/youtube-logo.jpg'),
+            backgroundImage: CachedNetworkImageProvider(user.profilePic),
           ),
         ),
 
         Padding(
           padding: const EdgeInsets.only(top: 10, bottom: 4),
           child: Text(
-            'Crealify',
+            user.displayName,
             style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
           ),
         ),
@@ -26,12 +30,12 @@ class TopHeader extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(bottom: 10),
           child: RichText(
-            text: const TextSpan(
-              style: TextStyle(color: Colors.blueGrey),
+            text: TextSpan(
+              style: const TextStyle(color: Colors.blueGrey),
               children: [
-                TextSpan(text: ' @Crealify •'),
-                TextSpan(text: ' 0 Subscriber •'),
-                TextSpan(text: ' 0 Videos'),
+                TextSpan(text: "${user.username} "),
+                TextSpan(text: '${user.subscriptions} subscriptions'),
+                TextSpan(text: '${user.videos} videos'),
               ],
             ),
           ),
