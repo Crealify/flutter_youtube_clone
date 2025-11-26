@@ -72,7 +72,7 @@ class MyChannelScreen extends StatelessWidget {
 
                 // tav bar
                 const TapBarPage(),
-                const TapBarView(),
+                const TapViewPages(),
 
               ],
             ),

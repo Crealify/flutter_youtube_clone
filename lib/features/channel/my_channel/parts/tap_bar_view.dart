@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class TapBarView extends StatelessWidget {
-  const TapBarView({super.key});
+class TapViewPages extends StatelessWidget {
+  const TapViewPages({super.key});
 
   @override
   Widget build(BuildContext context) {
