@@ -34,7 +34,7 @@ class TopHeader extends StatelessWidget {
               style: const TextStyle(color: Colors.blueGrey),
               children: [
                 TextSpan(text: "${user.username} "),
-                TextSpan(text: '${user.subscriptions} subscriptions'),
+                TextSpan(text: '${user.subscriptions.length} subscriptions '),
                 TextSpan(text: '${user.videos} videos'),
               ],
             ),

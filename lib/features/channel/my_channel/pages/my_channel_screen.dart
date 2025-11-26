@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:youtube_clone/cores/screens/error_page.dart';
@@ -19,7 +18,7 @@ class MyChannelScreen extends ConsumerWidget {
         .when(
           data: (currentUser) => DefaultTabController(
             length: 7,
-            child: Scaffold( 
+            child: Scaffold(
               body: SafeArea(
                 child: Padding(
                   padding: const EdgeInsets.only(top: 10),
