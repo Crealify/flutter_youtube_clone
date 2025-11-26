@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_clone/cores/colors.dart';
 import 'package:youtube_clone/cores/widgets/image_button.dart';
+import 'package:youtube_clone/features/channel/my_channel/parts/top_header.dart';
 
 class MyChannelScreen extends StatelessWidget {
   const MyChannelScreen({super.key});
@@ -15,35 +16,8 @@ class MyChannelScreen extends StatelessWidget {
             padding: const EdgeInsets.only(top: 10),
             child: Column(
               children: [
-                const Center(
-                  child: CircleAvatar(
-                    radius: 50,
-                    backgroundColor: Colors.grey,
-                    // backgroundImage: AssetImage('assets/images/youtube-logo.jpg'),
-                  ),
-                ),
-
-                Padding(
-                  padding: const EdgeInsets.only(top: 10, bottom: 4),
-                  child: Text(
-                    'Crealify',
-                    style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
-                  ),
-                ),
-
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 10),
-                  child: RichText(
-                    text: const TextSpan(
-                      style: TextStyle(color: Colors.blueGrey),
-                      children: [
-                        TextSpan(text: ' @Crealify •'),
-                        TextSpan(text: ' 0 Subscriber •'),
-                        TextSpan(text: ' 0 Videos'),
-                      ],
-                    ),
-                  ),
-                ),
+                // top header
+                const TopHeader(),
                 const Text(
                   "More about Crealify!",
                   textAlign: TextAlign.center,
