@@ -12,7 +12,7 @@ class MyChannelScreen extends StatelessWidget {
         length: 7,
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.only(top: 20),
+            padding: const EdgeInsets.only(top: 10),
             child: Column(
               children: [
                 const Center(
@@ -51,7 +51,7 @@ class MyChannelScreen extends StatelessWidget {
                 ),
 
                 Padding(
-                  padding: const EdgeInsets.only(top: 16),
+                  padding: const EdgeInsets.only(top: 10),
                   child: Row(
                     children: [
                       Expanded(
@@ -59,7 +59,6 @@ class MyChannelScreen extends StatelessWidget {
 
                         child: Container(
                           height: 40,
-
                           decoration: const BoxDecoration(
                             color: softBlueGreyBackGround,
                             borderRadius: BorderRadius.all(Radius.circular(9)),
@@ -96,16 +95,40 @@ class MyChannelScreen extends StatelessWidget {
                 ),
 
                 // tab bar
-                TabBar(
-                  tabs: [
-                    Text("Home"),
-                    Text("Videos"),
-                    Text("Shorts"),
-                    Text("Community"),
-                    Text("Playlists"),
-                    Text("Channels"),
-                    Text("About"),
-                  ],
+                Padding(
+                  padding: const EdgeInsets.only(top: 14),
+                  child: TabBar(
+                    isScrollable: true,
+                    labelStyle: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    indicatorSize: TabBarIndicatorSize.label,
+                    indicatorPadding: EdgeInsets.only(top: 12),
+                    indicatorColor: Colors.red,
+                    tabs: [
+                      Text("Home"),
+                      Text("Videos"),
+                      Text("Shorts"),
+                      Text("Community"),
+                      Text("Playlists"),
+                      Text("Channels"),
+                      Text("About"),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: const TabBarView(
+                    children: [
+                      Center(child: Text("Home")),
+                      Center(child: Text("Videos")),
+                      Center(child: Text("Shorts")),
+                      Center(child: Text("Community")),
+                      Center(child: Text("Playlists")),
+                      Center(child: Text("Channels")),
+                      Center(child: Text("About")),
+                    ],
+                  ),
                 ),
               ],
             ),
