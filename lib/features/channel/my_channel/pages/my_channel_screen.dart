@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:youtube_clone/cores/colors.dart';
 import 'package:youtube_clone/cores/widgets/image_button.dart';
 import 'package:youtube_clone/features/channel/my_channel/parts/tap_bar.dart';
+import 'package:youtube_clone/features/channel/my_channel/parts/tap_bar_view.dart';
 import 'package:youtube_clone/features/channel/my_channel/parts/top_header.dart';
 
 class MyChannelScreen extends StatelessWidget {
@@ -71,19 +72,8 @@ class MyChannelScreen extends StatelessWidget {
 
                 // tav bar
                 const TapBarPage(),
-                Expanded(
-                  child: const TabBarView(
-                    children: [
-                      Center(child: Text("Home")),
-                      Center(child: Text("Videos")),
-                      Center(child: Text("Shorts")),
-                      Center(child: Text("Community")),
-                      Center(child: Text("Playlists")),
-                      Center(child: Text("Channels")),
-                      Center(child: Text("About")),
-                    ],
-                  ),
-                ),
+                const TapBarView(),
+
               ],
             ),
           ),
