@@ -8,11 +8,11 @@ class SettingsItem extends StatelessWidget {
 
 
   const SettingsItem({
-    Key? key,
+    super.key,
     required this.identifier,
     required this.value,
     required this.onpressed,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
