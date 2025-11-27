@@ -63,7 +63,9 @@ class _MyChannelSettingsState extends ConsumerState<MyChannelSettings> {
                     SettingsItem(
                       identifier: "Name",
                       value: "Crealify",
-                      onpressed: () {},
+                      onpressed: () {
+                        
+                      },
                     ),
                     const SizedBox(height: 1),
                     SettingsItem(
@@ -100,8 +102,8 @@ class _MyChannelSettingsState extends ConsumerState<MyChannelSettings> {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 20,
+                        horizontal: 20,
+                        vertical: 10,
                       ),
                       child: Text(
                         "Changes made on your names and profile pictures are visible only to  YouTube and not to your subscribers.",
