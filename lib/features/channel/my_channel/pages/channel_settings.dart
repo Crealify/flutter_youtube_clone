@@ -80,7 +80,7 @@ class _MyChannelSettingsState extends ConsumerState<MyChannelSettings> {
                         showDialog(
                           context: context,
                           builder: (context) => SettingsDialog(
-                            identifier: "DisplayName",
+                            identifier: "Your New Name",
                             onSave: (name) {
                               ref
                                   .watch(editSettindsProvider)
@@ -92,13 +92,13 @@ class _MyChannelSettingsState extends ConsumerState<MyChannelSettings> {
                     ),
                     const SizedBox(height: 1),
                     SettingsItem(
-                      identifier: "Handle",
+                      identifier: "Username",
                       value: currentUser.username,
                       onpressed: () {
                         showDialog(
                           context: context,
                           builder: (context) => SettingsDialog(
-                            identifier: "Username",
+                            identifier: "Your New Username",
                             onSave: (username) {
                               ref
                                   .watch(editSettindsProvider)
@@ -116,7 +116,7 @@ class _MyChannelSettingsState extends ConsumerState<MyChannelSettings> {
                         showDialog(
                           context: context,
                           builder: (context) => SettingsDialog(
-                            identifier: "Discription",
+                            identifier: "Your New Description",
                             onSave: (description) {
                               ref
                                   .watch(editSettindsProvider)
