@@ -1,8 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:youtube_clone/cores/screens/error_page.dart';
 import 'package:youtube_clone/cores/screens/loader.dart';
 import 'package:youtube_clone/features/auth/provider/user_provider.dart';
+import 'package:youtube_clone/features/channel/my_channel/repository/edit_fields.dart';
+import 'package:youtube_clone/features/channel/my_channel/widgets/edit_setting_dialog.dart';
 import 'package:youtube_clone/features/channel/my_channel/widgets/setting_filed_item.dart';
 
 class MyChannelSettings extends ConsumerStatefulWidget {
@@ -19,7 +22,7 @@ class _MyChannelSettingsState extends ConsumerState<MyChannelSettings> {
     return ref
         .watch(currentUserProvider)
         .when(
-          data: (data) => Scaffold(
+          data: (currentUser) => Scaffold(
             body: SafeArea(
               child: Padding(
                 padding: const EdgeInsets.only(top: 0),
@@ -37,14 +40,24 @@ class _MyChannelSettingsState extends ConsumerState<MyChannelSettings> {
                           ),
                         ),
 
-                        const Positioned(
+                        Positioned(
                           left: 150,
                           top: 36,
-                          child: CircleAvatar(
-                            radius: 50,
-                            backgroundColor: Colors.white,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(color: Colors.white, width: 4),
+                            ),
+                            child: CircleAvatar(
+                              radius: 50,
+                              backgroundColor: Colors.grey,
+                              backgroundImage: CachedNetworkImageProvider(
+                                currentUser.profilePic,
+                              ),
+                            ),
                           ),
                         ),
+
                         Positioned(
                           right: 16,
                           top: 10,
@@ -62,22 +75,56 @@ class _MyChannelSettingsState extends ConsumerState<MyChannelSettings> {
 
                     SettingsItem(
                       identifier: "Name",
-                      value: "Crealify",
+                      value: currentUser.displayName,
                       onpressed: () {
-                        
+                        showDialog(
+                          context: context,
+                          builder: (context) => SettingsDialog(
+                            identifier: "DisplayName",
+                            onSave: (name) {
+                              ref
+                                  .watch(editSettindsProvider)
+                                  .editDisplayName(name);
+                            },
+                          ),
+                        );
                       },
                     ),
                     const SizedBox(height: 1),
                     SettingsItem(
                       identifier: "Handle",
-                      value: "@Crealify",
-                      onpressed: () {},
+                      value: currentUser.username,
+                      onpressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) => SettingsDialog(
+                            identifier: "Username",
+                            onSave: (username) {
+                              ref
+                                  .watch(editSettindsProvider)
+                                  .editUsername(username);
+                            },
+                          ),
+                        );
+                      },
                     ),
                     const SizedBox(height: 1),
                     SettingsItem(
                       identifier: "Description",
-                      value: "",
-                      onpressed: () {},
+                      value: currentUser.description,
+                      onpressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) => SettingsDialog(
+                            identifier: "Discription",
+                            onSave: (description) {
+                              ref
+                                  .watch(editSettindsProvider)
+                                  .editDescriptoion(description);
+                            },
+                          ),
+                        );
+                      },
                     ),
 
                     Padding(

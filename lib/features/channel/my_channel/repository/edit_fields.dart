@@ -23,13 +23,13 @@ class EditSettingsField {
 
   editUsername(username) async {
     await firestore.collection("users").doc(auth.currentUser!.uid).update({
-      "displayName": username,
+      "username": username,
     });
   }
 
   editDescriptoion(description) async {
     await firestore.collection("users").doc(auth.currentUser!.uid).update({
-      "displayName": description,
+      "description": description,
     });
   }
 }
