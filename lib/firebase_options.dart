@@ -63,6 +63,9 @@ class DefaultFirebaseOptions {
     messagingSenderId: '125029876091',
     projectId: 'youtube-crealify',
     storageBucket: 'youtube-crealify.firebasestorage.app',
+    androidClientId: '125029876091-uopnq9u9j6n6b0cegmkier1bmmgs10qg.apps.googleusercontent.com',
+    iosClientId: '125029876091-kr6vbjppo1m6c1rfe040s00334o9lh62.apps.googleusercontent.com',
     iosBundleId: 'com.example.youtubeClone',
   );
+
 }

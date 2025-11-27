@@ -17,7 +17,7 @@ class HomePage extends StatelessWidget {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(right: 40),
+              padding: const EdgeInsets.only(right: 20),
               child: Row(
                 children: [
                   Image.asset("assets/images/youtube.jpg", height: 36),
@@ -30,7 +30,7 @@ class HomePage extends StatelessWidget {
                       child: ImageButton(
                         onPressed: () {},
                         haveColor: false,
-                        image: '',
+                        image: 'cast.png',
                       ),
                     ),
                   ),
