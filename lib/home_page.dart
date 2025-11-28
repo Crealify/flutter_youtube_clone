@@ -5,6 +5,7 @@ import 'package:youtube_clone/cores/screens/error_page.dart';
 import 'package:youtube_clone/cores/screens/loader.dart';
 import 'package:youtube_clone/cores/widgets/image_button.dart';
 import 'package:youtube_clone/features/auth/provider/user_provider.dart';
+import 'package:youtube_clone/features/content/bottom_navigation.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -77,6 +78,7 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar: const BottomNavigation(),
     );
   }
 }
