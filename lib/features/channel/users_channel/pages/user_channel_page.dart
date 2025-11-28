@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_clone/features/auth/pages/flat_button.dart';
 
-class UserChannelPage extends StatelessWidget {
+class UserChannelPage extends StatefulWidget {
   const UserChannelPage({super.key});
 
+  @override
+  State<UserChannelPage> createState() => _UserChannelPageState();
+}
+
+class _UserChannelPageState extends State<UserChannelPage> {
+  bool haveVideos = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,6 +71,24 @@ class UserChannelPage extends StatelessWidget {
                 colour: Colors.black,
               ),
             ),
+            haveVideos
+                ? const SizedBox()
+                : SizedBox(
+                    child: Center(
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                          top: MediaQuery.sizeOf(context).height * 0.2,
+                        ),
+                        child: const Text(
+                          "No Videos",
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
           ],
         ),
       ),
