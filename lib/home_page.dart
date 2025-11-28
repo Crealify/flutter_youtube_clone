@@ -6,6 +6,7 @@ import 'package:youtube_clone/cores/screens/loader.dart';
 import 'package:youtube_clone/cores/widgets/image_button.dart';
 import 'package:youtube_clone/features/auth/provider/user_provider.dart';
 import 'package:youtube_clone/features/content/bottom_navigation.dart';
+import 'package:youtube_clone/features/upload/upload_bottom_sheets.dart';
 import 'package:youtube_clone/pages_list.dart';
 
 class HomePage extends StatefulWidget {
@@ -92,6 +93,11 @@ class _HomePageState extends State<HomePage> {
           if (index != 2) {
             currentIndex = index;
             setState(() {});
+          } else {
+            showModalBottomSheet(
+              context: context,
+              builder: (context) => CreateBottomSheet(),
+            );
           }
         },
       ),
