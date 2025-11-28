@@ -7,12 +7,12 @@ class ImageItem extends StatelessWidget {
   final String imageName;
   final bool? haveColor;
   const ImageItem({
-    Key? key,
+    super.key,
     required this.itemText,
     required this.itemClicked,
     required this.imageName,
     this.haveColor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
