@@ -19,13 +19,13 @@ class FlatButton extends StatelessWidget {
         color: colour,
         borderRadius: const BorderRadius.all(Radius.circular(16)),
       ),
-      child: TextButton(
-        onPressed: onPressed,
-        child: Text(
-          text,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 13,
+      child: SizedBox(
+        width: double.infinity,
+        child: TextButton(
+          onPressed: onPressed,
+          child: Text(
+            text,
+            style: const TextStyle(color: Colors.white, fontSize: 13),
           ),
         ),
       ),
