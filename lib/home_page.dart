@@ -6,6 +6,7 @@ import 'package:youtube_clone/cores/screens/loader.dart';
 import 'package:youtube_clone/cores/widgets/image_button.dart';
 import 'package:youtube_clone/features/auth/provider/user_provider.dart';
 import 'package:youtube_clone/features/content/bottom_navigation.dart';
+import 'package:youtube_clone/pages_list.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -82,6 +83,7 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
+            Expanded(child: pages[currentIndex]),
           ],
         ),
       ),
