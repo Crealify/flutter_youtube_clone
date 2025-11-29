@@ -10,6 +10,14 @@ void showErrorSnackBar(String message, context) =>
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text(message), duration: const Duration(seconds: 1)),
     );
+pickImage() async {
+  XFile? file = await ImagePicker().pickImage(source: ImageSource.gallery);
+  File image = File(file!.path);
+  if (image != null) {
+    return image;
+  }
+}
+
 pickvideo() async {
   XFile? file = await ImagePicker().pickVideo(source: ImageSource.gallery);
   File video = File(file!.path);

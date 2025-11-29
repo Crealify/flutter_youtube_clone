@@ -1,7 +1,20 @@
-import 'package:flutter/material.dart';
+import 'dart:io';
 
-class VideoDetailsPage extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:youtube_clone/cores/methods.dart';
+
+class VideoDetailsPage extends StatefulWidget {
   const VideoDetailsPage({super.key});
+
+  @override
+  State<VideoDetailsPage> createState() => _VideoDetailsPageState();
+}
+
+class _VideoDetailsPageState extends State<VideoDetailsPage> {
+  final titleController = TextEditingController();
+  final descriptionController = TextEditingController();
+  File? image;
+  bool isThumbnailIsSelected = false;
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +32,8 @@ class VideoDetailsPage extends StatelessWidget {
 
               SizedBox(height: 5),
               TextField(
+                controller: titleController,
                 maxLength: 100,
-                maxLines: 2,
                 decoration: InputDecoration(
                   hintText: "Enter the Title",
                   prefixIcon: Icon(Icons.title),
@@ -36,7 +49,8 @@ class VideoDetailsPage extends StatelessWidget {
               ),
               SizedBox(height: 5),
               TextField(
-                maxLines: 10,
+                controller: descriptionController,
+                maxLines: 5,
                 maxLength: 5000,
                 decoration: InputDecoration(
                   hintText: "Enter the Descriptions",
@@ -55,7 +69,11 @@ class VideoDetailsPage extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(11)),
                   ),
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      image = pickImage();
+                      isThumbnailIsSelected = true;
+                      setState(() {});
+                    },
                     child: const Text(
                       "SELECT THUMBNAILS",
                       style: TextStyle(color: Colors.white),
@@ -63,6 +81,28 @@ class VideoDetailsPage extends StatelessWidget {
                   ),
                 ),
               ),
+              isThumbnailIsSelected
+                  ? Image.file(image!, cacheHeight: 160, cacheWidth: 400)
+                  : const SizedBox(),
+
+              isThumbnailIsSelected
+                  ? Padding(
+                      padding: const EdgeInsets.only(top: 12),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.green,
+                          borderRadius: BorderRadius.all(Radius.circular(11)),
+                        ),
+                        child: TextButton(
+                          onPressed: () {},
+                          child: const Text(
+                            "PUBLISH",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    )
+                  : const SizedBox(),
             ],
           ),
         ),
