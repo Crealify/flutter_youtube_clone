@@ -69,8 +69,8 @@ class _VideoDetailsPageState extends State<VideoDetailsPage> {
                     borderRadius: BorderRadius.all(Radius.circular(11)),
                   ),
                   child: TextButton(
-                    onPressed: () {
-                      image = pickImage();
+                    onPressed: () async {
+                      image = await pickImage();
                       isThumbnailIsSelected = true;
                       setState(() {});
                     },
@@ -82,7 +82,14 @@ class _VideoDetailsPageState extends State<VideoDetailsPage> {
                 ),
               ),
               isThumbnailIsSelected
-                  ? Image.file(image!, cacheHeight: 160, cacheWidth: 400)
+                  ? Padding(
+                      padding: const EdgeInsets.only(top: 12),
+                      child: Image.file(
+                        image!,
+                        cacheHeight: 160,
+                        cacheWidth: 400,
+                      ),
+                    )
                   : const SizedBox(),
 
               isThumbnailIsSelected
