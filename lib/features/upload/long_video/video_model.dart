@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 class VideoModel {
   final String vidoeUrl;
@@ -20,4 +22,36 @@ class VideoModel {
     required this.likes,
     required this.type,
   });
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'vidoeUrl': vidoeUrl,
+      'thumbnail': thumbnail,
+      'title': title,
+      'datePublished': datePublished,
+      'views': views,
+      'videoId': videoId,
+      'userId': userId,
+      'likes': likes,
+      'type': type,
+    };
+  }
+
+  factory VideoModel.fromMap(Map<String, dynamic> map) {
+    return VideoModel(
+      vidoeUrl: map['vidoeUrl'] as String,
+      thumbnail: map['thumbnail'] as String,
+      title: map['title'] as String,
+      datePublished: map['datePublished'] as String,
+      views: map['views'] as String,
+      videoId: map['videoId'] as String,
+      userId: map['userId'] as String,
+      likes: List.from((map['likes'] as List),
+      type: map['type'] as String,
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory VideoModel.fromJson(String source) => VideoModel.fromMap(json.decode(source) as Map<String, dynamic>);
 }
