@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 class VideoModel {
   final String vidoeUrl;
@@ -46,12 +44,8 @@ class VideoModel {
       views: map['views'] as String,
       videoId: map['videoId'] as String,
       userId: map['userId'] as String,
-      likes: List.from((map['likes'] as List),
+      likes: List.from(map['likes'] as List),
       type: map['type'] as String,
     );
   }
-
-  String toJson() => json.encode(toMap());
-
-  factory VideoModel.fromJson(String source) => VideoModel.fromMap(json.decode(source) as Map<String, dynamic>);
 }
