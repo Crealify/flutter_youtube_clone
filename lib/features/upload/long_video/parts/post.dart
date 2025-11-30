@@ -21,7 +21,7 @@ class Post extends ConsumerWidget {
 
     final user = userModel.whenData((user) => user);
     return GestureDetector(
-      onTap:(){ Navigator.push(context, MaterialPageRoute(builder: (context)=> const Video()));},
+      onTap:(){ Navigator.push(context, MaterialPageRoute(builder: (context)=> const Video( )));},
       child: Column(
         children: [
           CachedNetworkImage(imageUrl: video.thumbnail),

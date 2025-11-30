@@ -72,7 +72,7 @@ class Video extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 10, right: 5),
                     child: Text(
-                      "Ahmad Amini",
+                      "Anil Bhattarai",
                       style: const TextStyle(fontWeight: FontWeight.w500),
                     ),
                   ),
