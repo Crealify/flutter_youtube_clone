@@ -131,7 +131,7 @@ class _VideoDetailsPageState extends ConsumerState<VideoDetailsPage> {
                                       FirebaseAuth.instance.currentUser!.uid,
                                   views: '',
                                   like: [],
-                                  type: '',
+                                  type: 'video',
                                 );
                           },
 
