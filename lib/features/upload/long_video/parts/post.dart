@@ -1,62 +1,77 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:youtube_clone/features/auth/model/user_model.dart';
+import 'package:youtube_clone/features/auth/provider/user_provider.dart';
 
 import 'package:youtube_clone/features/upload/long_video/video_model.dart';
 
-class Post extends StatelessWidget {
+class Post extends ConsumerWidget {
   final VideoModel video;
   const Post({super.key, required this.video});
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          CachedNetworkImage(imageUrl: video.thumbnail),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+  Widget build(BuildContext context, WidgetRef ref) {
+    final AsyncValue<UserModel> userModel = ref.watch(
+      anyUserDataProvider(video.userId),
+    );
+    userModel.whenData((user) => user);
 
+    final user = userModel.whenData((user) => user);
+    return Column(
+      children: [
+        CachedNetworkImage(imageUrl: video.thumbnail),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0, left: 5),
+              child: CircleAvatar(
+                radius: 20,
+                backgroundColor: Colors.grey,
+                backgroundImage: CachedNetworkImageProvider(
+                  user.value!.profilePic,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: Text(
+                video.title,
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
+            const Spacer(),
+            IconButton(onPressed: () {}, icon: Icon(Icons.more_vert)),
+          ],
+        ),
+        Padding(
+          padding: EdgeInsets.only(
+            left: MediaQuery.sizeOf(context).width * 0.14,
+          ),
+          child: Row(
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0, left: 5),
-                child: CircleAvatar(
-                  radius: 20,
-                  backgroundColor: Colors.grey,
-                  // backgroundImage: CachedNetworkImageProvider(video.userId),
-                ),
+              Text(
+                user.value!.displayName,
+                style: TextStyle(color: Colors.blueGrey),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: Text(
-                  video.title,
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  video.views == 0 ? "No View" : "${video.views}",
+                  style: const TextStyle(color: Colors.blueGrey),
                 ),
               ),
-              const Spacer(),
-              IconButton(onPressed: () {}, icon: Icon(Icons.more_vert)),
+              const Text(
+                "a moment ago",
+                style: TextStyle(color: Colors.blueGrey),
+              ),
             ],
           ),
-          Padding(
-            padding: EdgeInsets.only(
-              left: MediaQuery.sizeOf(context).width * 0.14,
-            ),
-            child: Row(
-              children: [
-                Text("Anil Bhattarai", style: TextStyle(color: Colors.blueGrey)),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: Text(
-                    video.views.toString(),
-                    style: TextStyle(color: Colors.blueGrey),
-                  ),
-                ),
-                Text("a moment ago", style: TextStyle(color: Colors.blueGrey)),
-              ],
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
