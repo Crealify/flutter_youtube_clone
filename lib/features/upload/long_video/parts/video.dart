@@ -58,82 +58,92 @@ class _VideoState extends State<Video> {
         elevation: 0,
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(176),
-          child: GestureDetector(
-            onTap: isShowIcons
-                ? () {
-                    isShowIcons = false;
-                    setState(() {});
-                  }
-                : () {
-                    isShowIcons = true;
+          child: AspectRatio(
+            aspectRatio: _controller!.value.aspectRatio,
+            child: GestureDetector(
+              onTap: isShowIcons
+                  ? () {
+                      isShowIcons = false;
+                      setState(() {});
+                    }
+                  : () {
+                      isShowIcons = true;
 
-                    setState(() {});
-                  },
-            // onTap: () {
-            //   setState(() {
-            //     isShowIcons = !isShowIcons;
-            //   });
-            // },
-            child: Stack(
-              children: [
-                AspectRatio(
-                  aspectRatio: _controller!.value.aspectRatio,
-                  child: VideoPlayer(_controller!),
-                ),
+                      setState(() {});
+                    },
+              // onTap: () {
+              //   setState(() {
+              //     isShowIcons = !isShowIcons;
+              //   });
+              // },
+              child: Stack(
+                children: [
+                  VideoPlayer(_controller!),
 
-                isShowIcons
-                    ? Positioned(
-                        left: 170,
-                        top: 88,
-                        child: GestureDetector(
-                          onTap: toogleVideoPlayer,
-                          child: SizedBox(
-                            height: 50,
-                            child: Image.asset(
-                              "assets/images/play.png",
-                              color: Colors.white,
+                  isShowIcons
+                      ? Positioned(
+                          left: 170,
+                          top: 88,
+                          child: GestureDetector(
+                            onTap: toogleVideoPlayer,
+                            child: SizedBox(
+                              height: 50,
+                              child: Image.asset(
+                                "assets/images/play.png",
+                                color: Colors.white,
+                              ),
                             ),
                           ),
-                        ),
-                      )
-                    : SizedBox(),
-                isShowIcons
-                    ? Positioned(
-                        left: 40,
-                        top: 88,
-                        child: GestureDetector(
-                          onTap: goBackward,
-                          child: SizedBox(
-                            height: 50,
-                            child: Image.asset(
-                              "assets/images/go_back_final.png",
-                              color: Colors.white,
+                        )
+                      : SizedBox(),
+                  isShowIcons
+                      ? Positioned(
+                          left: 40,
+                          top: 88,
+                          child: GestureDetector(
+                            onTap: goBackward,
+                            child: SizedBox(
+                              height: 50,
+                              child: Image.asset(
+                                "assets/images/go_back_final.png",
+                                color: Colors.white,
+                              ),
                             ),
                           ),
-                        ),
-                      )
-                    : SizedBox(),
-                isShowIcons
-                    ? Positioned(
-                        right: 40,
-                        top: 88,
-                        child: GestureDetector(
-                          onTap: goFordward,
-                          child: SizedBox(
-                            height: 50,
-                            child: Image.asset(
-                              "assets/images/go ahead final.png",
-                              color: Colors.white,
+                        )
+                      : SizedBox(),
+                  isShowIcons
+                      ? Positioned(
+                          right: 40,
+                          top: 88,
+                          child: GestureDetector(
+                            onTap: goFordward,
+                            child: SizedBox(
+                              height: 50,
+                              child: Image.asset(
+                                "assets/images/go ahead final.png",
+                                color: Colors.white,
+                              ),
                             ),
                           ),
+                        )
+                      : SizedBox(),
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: SizedBox(
+                      height: 7.5,
+                      child: VideoProgressIndicator(
+                        _controller!,
+                        allowScrubbing: true,
+                        colors: VideoProgressColors(
+                          playedColor: Colors.red,
+                          bufferedColor: Colors.grey,
                         ),
-                      )
-                    : SizedBox(),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: SizedBox(height: 7.5, child: Container()),
-                ),
-              ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
