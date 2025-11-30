@@ -32,6 +32,23 @@ class _VideoState extends State<Video> {
           });
   }
 
+  toogleVideoPlayer() {
+    if (_controller!.value.isPlaying) {
+      //pause the video
+      _controller!.pause();
+      isPlaying = false;
+      setState(() {});
+    } else {
+      //play the video
+      _controller!.play();
+      isPlaying = true;
+      setState(() {});
+    }
+  }
+
+  goBackward() {}
+  goFordward() {}
+
   @override
   @override
   Widget build(BuildContext context) {
@@ -42,18 +59,21 @@ class _VideoState extends State<Video> {
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(176),
           child: GestureDetector(
-            onTap: () {
-              isShowIcons
-                  ? () {
-                      isShowIcons = false;
-                      setState(() {});
-                    }
-                  : () {
-                      isShowIcons = true;
+            onTap: isShowIcons
+                ? () {
+                    isShowIcons = false;
+                    setState(() {});
+                  }
+                : () {
+                    isShowIcons = true;
 
-                      setState(() {});
-                    };
-            },
+                    setState(() {});
+                  },
+            // onTap: () {
+            //   setState(() {
+            //     isShowIcons = !isShowIcons;
+            //   });
+            // },
             child: Stack(
               children: [
                 AspectRatio(
@@ -66,7 +86,7 @@ class _VideoState extends State<Video> {
                         left: 170,
                         top: 88,
                         child: GestureDetector(
-                          onTap: () {},
+                          onTap: toogleVideoPlayer,
                           child: SizedBox(
                             height: 50,
                             child: Image.asset(
@@ -82,7 +102,7 @@ class _VideoState extends State<Video> {
                         left: 40,
                         top: 88,
                         child: GestureDetector(
-                          onTap: () {},
+                          onTap: goBackward,
                           child: SizedBox(
                             height: 50,
                             child: Image.asset(
@@ -98,7 +118,7 @@ class _VideoState extends State<Video> {
                         right: 40,
                         top: 88,
                         child: GestureDetector(
-                          onTap: () {},
+                          onTap: goFordward,
                           child: SizedBox(
                             height: 50,
                             child: Image.asset(
