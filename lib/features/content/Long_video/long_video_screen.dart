@@ -1,6 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:youtube_clone/cores/screens/error_page.dart';
+import 'package:youtube_clone/cores/screens/loader.dart';
 import 'package:youtube_clone/features/upload/long_video/parts/post.dart';
+import 'package:youtube_clone/features/upload/long_video/video_model.dart';
 
 class LongVideoScreen extends StatelessWidget {
   const LongVideoScreen({super.key});
@@ -9,12 +12,21 @@ class LongVideoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: StreamBuilder(
-        stream: FirebaseFirestore.instance.collection("video").snapshots(),
+        stream: FirebaseFirestore.instance.collection("videos").snapshots(),
         builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return const ErrorPage();
+          } else if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Loader();
+          }
+          final videosMaps = snapshot.data!.docs;
+          final videos = videosMaps.map((video) {
+            return VideoModel.fromMap(video.data());
+          }).toList();
           return ListView.builder(
-            itemCount: 1,
+            itemCount: videos.length,
             itemBuilder: (context, index) {
-              return Post();
+              return Post(video: videos[index]);
             },
           );
         },

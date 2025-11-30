@@ -1,8 +1,12 @@
-import 'package:flutter/material.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+
+import 'package:youtube_clone/features/upload/long_video/video_model.dart';
 
 class Post extends StatelessWidget {
-  const Post({super.key});
+  final VideoModel video;
+  const Post({super.key, required this.video});
 
   @override
   Widget build(BuildContext context) {
