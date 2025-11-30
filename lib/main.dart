@@ -7,8 +7,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:youtube_clone/cores/screens/loader.dart';
 import 'package:youtube_clone/features/auth/pages/login_page.dart';
 import 'package:youtube_clone/features/auth/pages/username_page.dart';
-import 'package:youtube_clone/features/upload/long_video/video_details_page.dart';
 import 'package:youtube_clone/firebase_options.dart';
+import 'package:youtube_clone/home_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -50,12 +50,12 @@ class MyApp extends ConsumerWidget {
               } else if (snapshot.connectionState == ConnectionState.waiting) {
                 return Loader();
               } else {
-                // return HomePage();
+                return HomePage();
                 // return MyChannelScreen();
                 // return MyChannelSettings();
                 // return UserChannelPage();
 
-                return VideoDetailsPage();
+                // return VideoDetailsPage();
               }
             },
           );

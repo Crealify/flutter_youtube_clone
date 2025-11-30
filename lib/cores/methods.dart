@@ -32,7 +32,7 @@ Future pickVideo(context) async {
   );
 }
 
-putFileInStorage(file, number, fileType) async {
+Future<String> putFileInStorage(file, number, fileType) async {
   final ref = FirebaseStorage.instance.ref().child("$fileType/$number");
   final upload = ref.putFile(file);
   final snapshot = await upload;
