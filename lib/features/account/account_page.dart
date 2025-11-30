@@ -6,6 +6,11 @@ class AccountPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Column(children: [Items()]));
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.only(top: 10),
+        child: SafeArea(child: Column(children: [Items()])),
+      ),
+    );
   }
 }
