@@ -110,15 +110,13 @@ class _VideoDetailsPageState extends ConsumerState<VideoDetailsPage> {
                         child: TextButton(
                           onPressed: () async {
                             // publish video
-                            String thumbnail = await putFileInStorage(
-                              image,
-                              randomNumber,
-                              "image",
+                            String thumbnail = await uploadToCloudinary(
+                              image!,
+                              "youtube_clone_images",
                             );
-                            String videoUrl = await putFileInStorage(
-                              widget.video,
-                              randomNumber,
-                              "vidoe",
+                            String videoUrl = await uploadToCloudinary(
+                              widget.video!,
+                              "youtube_clone_videos",
                             );
 
                             ref
@@ -136,6 +134,35 @@ class _VideoDetailsPageState extends ConsumerState<VideoDetailsPage> {
                                   type: '',
                                 );
                           },
+
+                          // onPressed: () async {
+                          //   // publish video
+                          //   String thumbnail = await putFileInStorage(
+                          //     image,
+                          //     randomNumber,
+                          //     "image",
+                          //   );
+                          //   String videoUrl = await putFileInStorage(
+                          //     widget.video,
+                          //     randomNumber,
+                          //     "vidoe",
+                          //   );
+
+                          //   ref
+                          //       .watch(longVideoProvider)
+                          //       .uploadvideoToFirestore(
+                          //         videoUrl: videoUrl,
+                          //         thumbnail: thumbnail,
+                          //         title: titleController.text,
+                          //         videoId: videoId,
+                          //         datePublished: DateTime.now(),
+                          //         userId:
+                          //             FirebaseAuth.instance.currentUser!.uid,
+                          //         views: '',
+                          //         like: [],
+                          //         type: '',
+                          //       );
+                          // },
                           child: const Text(
                             "PUBLISH",
                             style: TextStyle(color: Colors.white),

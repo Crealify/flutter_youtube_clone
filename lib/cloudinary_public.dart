@@ -1,4 +1,17 @@
-// import 'package:cloudinary_public/cloudinary_public.dart';
+
+
+import 'package:cloudinary_public/cloudinary_public.dart';
+
+final cloudinaryImages = CloudinaryPublic(
+  'dsytr6bft',
+  'youtube_clone_images',
+  cache: false,
+);
+final cloudinaryVideos = CloudinaryPublic(
+  'dsytr6bft',
+  'youtube_clone_videos',
+  cache: false,
+);
 
 // final cloudinary = CloudinaryPublic(
 //   'Cloud Name',
