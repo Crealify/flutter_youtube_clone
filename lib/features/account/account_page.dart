@@ -17,25 +17,51 @@ class AccountPage extends StatelessWidget {
         child: SafeArea(
           child: Column(
             children: [
-              CircleAvatar(
-                radius: 40,
-                backgroundColor: Colors.grey,
-                backgroundImage: CachedNetworkImageProvider(user.profilePic),
+              Row(
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: const Icon(Icons.arrow_back),
+                  ),
+                  Expanded(
+                    child: Column(
+                      children: [
+                        CircleAvatar(
+                          radius: 40,
+                          backgroundColor: Colors.grey,
+                          backgroundImage: CachedNetworkImageProvider(
+                            user.profilePic,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 12),
+                          child: Text(
+                            user.displayName,
+                            style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 10),
+                          child: Text(
+                            user.username,
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.blueGrey,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                   SizedBox(width: 48), 
+                ],
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 12),
-                child: Text(
-                  user.displayName,
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 10),
-                child: Text(
-                  user.username,
-                  style: TextStyle(fontSize: 16, color: Colors.blueGrey),
-                ),
-              ),
+
               const Items(),
             ],
           ),
