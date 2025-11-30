@@ -4,9 +4,31 @@ import 'package:flutter/material.dart';
 import 'package:youtube_clone/cores/colors.dart';
 import 'package:youtube_clone/cores/widgets/flat_button.dart';
 import 'package:youtube_clone/features/upload/long_video/widgets/video_externel_buttons.dart';
+import 'package:video_player/video_player.dart';
 
-class Video extends StatelessWidget {
+class Video extends StatefulWidget {
   const Video({super.key});
+
+  @override
+  State<Video> createState() => _VideoState();
+}
+
+class _VideoState extends State<Video> {
+  VideoPlayerController? _controller;
+  @override
+  void initState() {
+    super.initState();
+    _controller =
+        VideoPlayerController.networkUrl(
+            Uri.parse(
+              'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',
+            ),
+          )
+          ..initialize().then((_) {
+            // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
+            setState(() {});
+          });
+  }
 
   @override
   @override
