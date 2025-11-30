@@ -6,11 +6,11 @@ class FlatButton extends StatelessWidget {
   final VoidCallback onPressed;
   final Color colour;
   const FlatButton({
-    Key? key,
+    super.key,
     required this.text,
     required this.onPressed,
-    required this.colour,
-  }) : super(key: key);
+    required this.colour, 
+  });
 
   @override
   Widget build(BuildContext context) {
