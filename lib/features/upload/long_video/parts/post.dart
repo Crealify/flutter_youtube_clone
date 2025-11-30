@@ -13,22 +13,23 @@ class Post extends StatelessWidget {
     return Container(
       child: Column(
         children: [
-          CachedNetworkImage(
-            imageUrl:
-                "https://static.vecteezy.com/system/resources/thumbnails/049/671/166/small/tiger-amazing-background-hd-wallpaper-photo.jpeg",
-          ),
+          CachedNetworkImage(imageUrl: video.thumbnail),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
 
             children: [
               Padding(
                 padding: const EdgeInsets.only(top: 8.0, left: 5),
-                child: CircleAvatar(radius: 20, backgroundColor: Colors.grey),
+                child: CircleAvatar(
+                  radius: 20,
+                  backgroundColor: Colors.grey,
+                  // backgroundImage: CachedNetworkImageProvider(video.userId),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 10),
-                child: const Text(
-                  "First Video here",
+                child: Text(
+                  video.title,
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
@@ -42,11 +43,11 @@ class Post extends StatelessWidget {
             ),
             child: Row(
               children: [
-                Text("Crealify", style: TextStyle(color: Colors.blueGrey)),
+                Text("Anil Bhattarai", style: TextStyle(color: Colors.blueGrey)),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: Text(
-                    "No Views",
+                    video.views.toString(),
                     style: TextStyle(color: Colors.blueGrey),
                   ),
                 ),
