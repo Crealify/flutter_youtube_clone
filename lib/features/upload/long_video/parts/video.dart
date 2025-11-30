@@ -14,6 +14,8 @@ class Video extends StatefulWidget {
 }
 
 class _VideoState extends State<Video> {
+  bool isShowIcons = false;
+  bool isPlaying = false;
   VideoPlayerController? _controller;
   @override
   void initState() {
@@ -40,7 +42,18 @@ class _VideoState extends State<Video> {
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(176),
           child: GestureDetector(
-            onTap: () {},
+            onTap: () {
+              isShowIcons
+                  ? () {
+                      isShowIcons = false;
+                      setState(() {});
+                    }
+                  : () {
+                      isShowIcons = true;
+
+                      setState(() {});
+                    };
+            },
             child: Stack(
               children: [
                 AspectRatio(
@@ -48,14 +61,54 @@ class _VideoState extends State<Video> {
                   child: VideoPlayer(_controller!),
                 ),
 
-                Positioned(
-                  left: 182,
-                  top: 87,
-                  child: GestureDetector(
-                    onTap: () {},
-                    child: SizedBox(height: 50, child: Container()),
-                  ),
-                ),
+                isShowIcons
+                    ? Positioned(
+                        left: 170,
+                        top: 88,
+                        child: GestureDetector(
+                          onTap: () {},
+                          child: SizedBox(
+                            height: 50,
+                            child: Image.asset(
+                              "assets/images/play.png",
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      )
+                    : SizedBox(),
+                isShowIcons
+                    ? Positioned(
+                        left: 40,
+                        top: 88,
+                        child: GestureDetector(
+                          onTap: () {},
+                          child: SizedBox(
+                            height: 50,
+                            child: Image.asset(
+                              "assets/images/go_back_final.png",
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      )
+                    : SizedBox(),
+                isShowIcons
+                    ? Positioned(
+                        right: 40,
+                        top: 88,
+                        child: GestureDetector(
+                          onTap: () {},
+                          child: SizedBox(
+                            height: 50,
+                            child: Image.asset(
+                              "assets/images/go ahead final.png",
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      )
+                    : SizedBox(),
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: SizedBox(height: 7.5, child: Container()),
