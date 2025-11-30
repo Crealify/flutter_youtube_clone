@@ -26,7 +26,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
         curve: Curves.easeInToLinear,
         duration: const Duration(milliseconds: 300),
         iconSize: 24,
-        gap: 6,
+        gap: 2,
         color: Colors.grey[800],
         activeColor: Colors.purple,
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
