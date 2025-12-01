@@ -1,7 +1,12 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:youtube_clone/cores/screens/error_page.dart';
+import 'package:youtube_clone/cores/screens/loader.dart';
 import 'package:youtube_clone/features/auth/provider/user_provider.dart';
+import 'package:youtube_clone/features/content/comment/comment_tile.dart';
+import 'package:youtube_clone/features/upload/comments/comment_model.dart';
 
 import 'package:youtube_clone/features/upload/comments/comment_repository.dart';
 import 'package:youtube_clone/features/upload/long_video/video_model.dart';
@@ -44,6 +49,29 @@ class _CommentSheetState extends ConsumerState<CommentSheet> {
             child: const Text(
               "Remember to keep comments respectful and follow out community and guideliences",
             ),
+          ),
+          StreamBuilder(
+            stream: FirebaseFirestore.instance
+                .collection("comments")
+                .where("videoId", isEqualTo: widget.video)
+                .snapshots(),
+            builder: (context, snapshot) {
+              if (!snapshot.hasData || snapshot.data == null) {
+                return const ErrorPage(); 
+              } else if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Loader();
+              }
+              final commentsMap = snapshot.data!.docs;
+              final List<CommentModel> comments = commentsMap
+                  .map((comment) => CommentModel.fromMap(comment.data()))
+                  .toList();
+              return ListView.builder(
+                itemCount: comments.length,
+                itemBuilder: (context, index) {
+                  return CommentTile(comment: comments[index]);
+                },
+              );
+            },
           ),
           const Spacer(),
           Padding(
