@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:video_player/video_player.dart';
 
 import 'package:youtube_clone/cores/colors.dart';
+import 'package:youtube_clone/cores/screens/loader.dart';
 import 'package:youtube_clone/cores/widgets/flat_button.dart';
 import 'package:youtube_clone/features/auth/model/user_model.dart';
 import 'package:youtube_clone/features/auth/provider/user_provider.dart';
@@ -116,7 +117,10 @@ class _VideoState extends ConsumerState<Video> {
                             ),
                           ),
                         )
-                      : SizedBox(),
+                      : Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Loader(),
+                        ),
                   isShowIcons
                       ? Positioned(
                           right: 40,
