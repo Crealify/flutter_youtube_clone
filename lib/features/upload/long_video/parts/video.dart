@@ -12,6 +12,7 @@ import 'package:youtube_clone/cores/screens/loader.dart';
 import 'package:youtube_clone/cores/widgets/flat_button.dart';
 import 'package:youtube_clone/features/auth/model/user_model.dart';
 import 'package:youtube_clone/features/auth/provider/user_provider.dart';
+import 'package:youtube_clone/features/content/comment/comment_sheet.dart';
 import 'package:youtube_clone/features/upload/long_video/parts/post.dart';
 import 'package:youtube_clone/features/upload/long_video/video_model.dart';
 import 'package:youtube_clone/features/upload/long_video/widgets/video_externel_buttons.dart';
@@ -302,6 +303,26 @@ class _VideoState extends ConsumerState<Video> {
                 ),
               ),
             ),
+            //Comment Box
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+              child: GestureDetector(
+                onTap: () {
+                  showModalBottomSheet(
+                    context: context,
+                    builder: (context) => CommentSheet(),
+                  );
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade300,
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                  ),
+                  height: 45,
+                  width: 200,
+                ),
+              ),
+            ),
 
             // Padding(
             //   padding: const EdgeInsets.only(top: 10, left: 5),
@@ -310,8 +331,7 @@ class _VideoState extends ConsumerState<Video> {
             //     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             //   ),
             // ),
-            Padding(
-              padding: const EdgeInsets.only(top: 8.0),
+            Expanded(
               child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
                 stream: FirebaseFirestore.instance
                     .collection("videos")
