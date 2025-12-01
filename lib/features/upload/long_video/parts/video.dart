@@ -1,15 +1,18 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:video_player/video_player.dart';
 
 import 'package:youtube_clone/cores/colors.dart';
+import 'package:youtube_clone/cores/screens/error_page.dart';
 import 'package:youtube_clone/cores/screens/loader.dart';
 import 'package:youtube_clone/cores/widgets/flat_button.dart';
 import 'package:youtube_clone/features/auth/model/user_model.dart';
 import 'package:youtube_clone/features/auth/provider/user_provider.dart';
+import 'package:youtube_clone/features/upload/long_video/parts/post.dart';
 import 'package:youtube_clone/features/upload/long_video/video_model.dart';
 import 'package:youtube_clone/features/upload/long_video/widgets/video_externel_buttons.dart';
 
@@ -297,6 +300,44 @@ class _VideoState extends ConsumerState<Video> {
                     ),
                   ],
                 ),
+              ),
+            ),
+
+            // Padding(
+            //   padding: const EdgeInsets.only(top: 10, left: 5),
+            //   child: Text(
+            //     "Recommanded Video",
+            //     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            //   ),
+            // ),
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+                stream: FirebaseFirestore.instance
+                    .collection("videos")
+                    .where("videoId", isNotEqualTo: widget.video.videoId)
+                    .snapshots(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Loader();
+                  }
+                  if (!snapshot.hasData || snapshot.data == null) {
+                    return ErrorPage();
+                  }
+                  // You can customize the widget below as needed
+                  final videosMap = snapshot.data!.docs;
+                  final videos = videosMap
+                      .map((doc) => VideoModel.fromMap(doc.data()))
+                      .toList();
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: videos.length,
+                    itemBuilder: (context, index) {
+                      return Post(video: videos[index]);
+                    },
+                  );
+                },
               ),
             ),
           ],
