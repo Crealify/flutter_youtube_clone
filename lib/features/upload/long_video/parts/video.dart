@@ -1,19 +1,26 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:youtube_clone/cores/colors.dart';
-import 'package:youtube_clone/cores/widgets/flat_button.dart';
-import 'package:youtube_clone/features/upload/long_video/widgets/video_externel_buttons.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:video_player/video_player.dart';
 
-class Video extends StatefulWidget {
-  const Video({super.key});
+import 'package:youtube_clone/cores/colors.dart';
+import 'package:youtube_clone/cores/widgets/flat_button.dart';
+import 'package:youtube_clone/features/auth/model/user_model.dart';
+import 'package:youtube_clone/features/auth/provider/user_provider.dart';
+import 'package:youtube_clone/features/upload/long_video/video_model.dart';
+import 'package:youtube_clone/features/upload/long_video/widgets/video_externel_buttons.dart';
+
+class Video extends ConsumerStatefulWidget {
+  final VideoModel video;
+  const Video({super.key, required this.video});
 
   @override
-  State<Video> createState() => _VideoState();
+  ConsumerState<Video> createState() => _VideoState();
 }
 
-class _VideoState extends State<Video> {
+class _VideoState extends ConsumerState<Video> {
   bool isShowIcons = false;
   bool isPlaying = false;
   VideoPlayerController? _controller;
@@ -21,11 +28,7 @@ class _VideoState extends State<Video> {
   void initState() {
     super.initState();
     _controller =
-        VideoPlayerController.networkUrl(
-            Uri.parse(
-              'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',
-            ),
-          )
+        VideoPlayerController.networkUrl(Uri.parse(widget.video.vidoeUrl))
           ..initialize().then((_) {
             // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
             setState(() {});
@@ -50,8 +53,10 @@ class _VideoState extends State<Video> {
   goFordward() {}
 
   @override
-  @override
   Widget build(BuildContext context) {
+    final AsyncValue<UserModel> user = ref.watch(
+      anyUserDataProvider(widget.video.userId),
+    );
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.grey,
@@ -154,7 +159,7 @@ class _VideoState extends State<Video> {
             Padding(
               padding: const EdgeInsets.only(left: 13, top: 4),
               child: Text(
-                "How to learn Flutter quickly",
+                widget.video.title,
                 overflow: TextOverflow.ellipsis,
                 softWrap: true,
                 style: const TextStyle(
@@ -170,7 +175,9 @@ class _VideoState extends State<Video> {
                   Padding(
                     padding: const EdgeInsets.only(left: 8, right: 4),
                     child: Text(
-                      "No view",
+                      widget.video.views == 0
+                          ? "No View"
+                          : "${widget.video.views} views,",
                       style: const TextStyle(
                         fontSize: 13.4,
                         color: Color(0xff5F5F5F),
@@ -195,18 +202,26 @@ class _VideoState extends State<Video> {
               padding: const EdgeInsets.only(left: 12, top: 9, right: 9),
               child: Row(
                 children: [
-                  CircleAvatar(radius: 16, backgroundColor: Colors.grey),
+                  CircleAvatar(
+                    radius: 16,
+                    backgroundColor: Colors.grey,
+                    backgroundImage: CachedNetworkImageProvider(
+                      user.value!.profilePic,
+                    ),
+                  ),
                   Padding(
                     padding: const EdgeInsets.only(left: 10, right: 5),
                     child: Text(
-                      "Anil Bhattarai",
+                      user.value!.displayName,
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 5.0, left: 6),
                     child: Text(
-                      "1 Subscriptions",
+                      user.value!.subscriptions.isEmpty
+                          ? "No Subscriptions"
+                          : "${user.value!.subscriptions.length} Subscriptions",
                       style: TextStyle(
                         fontSize: 13,
                         fontWeight: FontWeight.w500,
