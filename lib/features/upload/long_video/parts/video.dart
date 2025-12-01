@@ -310,7 +310,7 @@ class _VideoState extends ConsumerState<Video> {
                 onTap: () {
                   showModalBottomSheet(
                     context: context,
-                    builder: (context) => CommentSheet(),
+                    builder: (context) => CommentSheet(video: widget.video,),
                   );
                 },
                 child: Container(

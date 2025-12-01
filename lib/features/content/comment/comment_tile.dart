@@ -8,20 +8,21 @@ class CommentTile extends StatelessWidget {
     return Container(
       child: Column(
         children: [
-          Row(
-            children: [
-              CircleAvatar(radius: 15, backgroundColor: Colors.grey),
+         Row(
+          children: [
+             CircleAvatar(radius: 15, backgroundColor: Colors.grey),
 
-              Text(
-                "Anil Bhattarai",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-              ),
-              Text("a moment ago"),
-              const Spacer(),
-              Icon(Icons.more_vert),
-            ],
+          Text(
+            "Anil Bhattarai",
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
           ),
-          Text("First comment on the platform "),
+          Text("a moment ago"),
+          const Spacer(),
+          Icon(Icons.more_vert),
+          ],
+         ),
+         Text("First comment on the platform "),
+
         ],
       ),
     );

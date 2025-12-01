@@ -12,12 +12,11 @@ class CommentRepository {
   final FirebaseFirestore firestore;
   CommentRepository({required this.firestore});
 
-  void uploadCommentToFirestore({
+  Future<void> uploadCommentToFirestore({
     required String commentText,
     required String videoId,
     required String displayName,
     required String profilePic,
-    required String commentId,
   }) async {
     String commentId = const Uuid().v4();
     CommentModel comment = CommentModel(
