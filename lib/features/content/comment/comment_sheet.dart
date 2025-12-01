@@ -32,7 +32,31 @@ class CommentSheet extends StatelessWidget {
             ),
           ),
           const Spacer(),
-          
+          Padding(
+            padding: const EdgeInsets.only(bottom: 10, right: 10, left: 10),
+            child: Row(
+              children: [
+                CircleAvatar(radius: 18, backgroundColor: Colors.grey),
+                const SizedBox(width: 10),
+                const SizedBox(
+                  height: 45,
+                  width: 274,
+                  child: TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey),
+                      ),
+                      hintText: "Add a comment",
+                    ),
+                  ),
+                ),
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.send, color: Colors.green, size: 36),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
