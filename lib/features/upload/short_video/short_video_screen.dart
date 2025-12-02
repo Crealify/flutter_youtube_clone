@@ -26,7 +26,9 @@ class _ShortVideoScreenState extends State<ShortVideoScreen> {
       minDuration: const Duration(seconds: 3),
       maxDuration: const Duration(seconds: 60),
     );
-    editorController!.initialize().then((_) => setState(() {}));
+    editorController!
+        .initialize(aspectRatio: 3 / 3.35)
+        .then((_) => setState(() {}));
   }
 
   @override
