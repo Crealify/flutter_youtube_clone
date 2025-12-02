@@ -57,6 +57,10 @@ class _ShortVideoScreenState extends State<ShortVideoScreen> {
 
                     // editor cut aauxa
                     MyTrimSlider(controller: editorController!, height: 45),
+
+                    Container(
+                      child: TextButton(onPressed: () {}, child: Text("DONE")),
+                    ),
                   ],
                 )
               : const SizedBox(),
