@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:video_editor/video_editor.dart';
+import 'package:youtube_clone/features/upload/short_video/widget/trim_slinder.dart';
 
 class ShortVideoScreen extends StatefulWidget {
   final File shortVideo;
@@ -35,24 +36,30 @@ class _ShortVideoScreenState extends State<ShortVideoScreen> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.only(top: 20),
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(right: 10, left: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: editorController!.initialized
+              ? Column(
                   children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.zoom_out_map_outlined),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 10, left: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          IconButton(
+                            onPressed: () {},
+                            icon: const Icon(Icons.zoom_out_map_outlined),
+                          ),
+                          CircleAvatar(radius: 18),
+                        ],
+                      ),
                     ),
-                    CircleAvatar(radius: 18),
+
+                    CropGridViewer.preview(controller: editorController!),
+
+                    // editor cut aauxa
+                    MyTrimSlider(controller: editorController!, height: 45),
                   ],
-                ),
-              ),
-              CropGridViewer.preview(controller: editorController!),
-            ],
-          ),
+                )
+              : const SizedBox(),
         ),
       ),
     );
