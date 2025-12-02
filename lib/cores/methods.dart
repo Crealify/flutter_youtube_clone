@@ -71,6 +71,18 @@ Future pickVideo(context) async {
     ),
   );
 }
+Future pickShortVideo(context) async {
+  XFile? file = await ImagePicker().pickVideo(source: ImageSource.gallery);
+  File video = File(file!.path);
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) {
+        return VideoDetailsPage(video: video);
+      },
+    ),
+  );
+}
 
 Future<String> uploadToCloudinary(File file, String folder) async {
   try {
