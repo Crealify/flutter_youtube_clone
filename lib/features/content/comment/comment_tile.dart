@@ -10,27 +10,45 @@ class CommentTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          children: [
-            CircleAvatar(
-              radius: 15,
-              backgroundColor: Colors.grey,
-              backgroundImage: CachedNetworkImageProvider(comment.profilePic),
-            ),
+    return Padding(
+      padding: const EdgeInsets.only(top: 7, left: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: CircleAvatar(
+                  radius: 15,
+                  backgroundColor: Colors.grey,
+                  backgroundImage: CachedNetworkImageProvider(
+                    comment.profilePic,
+                  ),
+                ),
+              ),
+              SizedBox(width: 10),
 
-            Text(
-              comment.displayName,
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+              Text(
+                comment.displayName,
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+              ),
+              SizedBox(width: 5),
+              const Text("a moment ago"),
+              const Spacer(),
+              const Icon(Icons.more_vert),
+            ],
+          ),
+          Padding(
+            padding: EdgeInsets.only(
+              left: 42,
+              // right: 10,
+              right: MediaQuery.sizeOf(context).width * 0.4,
             ),
-            const Text("a moment ago"),
-            const Spacer(),
-            const Icon(Icons.more_vert),
-          ],
-        ),
-        Text(comment.commentText),
-      ],
+            child: Text(comment.commentText),
+          ),
+        ],
+      ),
     );
   }
 }
