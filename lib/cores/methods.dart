@@ -47,6 +47,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:youtube_clone/features/upload/long_video/video_details_page.dart';
 import 'package:cloudinary_public/cloudinary_public.dart';
+import 'package:youtube_clone/features/upload/short_video/short_video_screen.dart';
 
 void showErrorSnackBar(String message, context) =>
     ScaffoldMessenger.of(context).showSnackBar(
@@ -78,7 +79,7 @@ Future pickShortVideo(context) async {
     context,
     MaterialPageRoute(
       builder: (context) {
-        return VideoDetailsPage(video: video);
+        return ShortVideoScreen();
       },
     ),
   );
