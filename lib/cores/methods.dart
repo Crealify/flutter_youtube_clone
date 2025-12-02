@@ -72,6 +72,7 @@ Future pickVideo(context) async {
     ),
   );
 }
+
 Future pickShortVideo(context) async {
   XFile? file = await ImagePicker().pickVideo(source: ImageSource.gallery);
   File video = File(file!.path);
@@ -79,7 +80,7 @@ Future pickShortVideo(context) async {
     context,
     MaterialPageRoute(
       builder: (context) {
-        return ShortVideoScreen();
+        return ShortVideoScreen(shortVideo: video);
       },
     ),
   );
