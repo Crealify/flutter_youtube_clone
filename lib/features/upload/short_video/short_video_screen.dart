@@ -59,6 +59,10 @@ class _ShortVideoScreenState extends State<ShortVideoScreen> {
                     MyTrimSlider(controller: editorController!, height: 45),
 
                     Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(18)),
+                      ),
                       child: TextButton(onPressed: () {}, child: Text("DONE")),
                     ),
                   ],
