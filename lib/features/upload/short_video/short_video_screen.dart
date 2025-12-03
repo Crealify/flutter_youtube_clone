@@ -2,6 +2,8 @@
 import 'dart:io';
 
 import 'package:ffmpeg_kit_flutter_new/ffmpeg_kit.dart';
+import 'package:ffmpeg_kit_flutter_new/return_code.dart';
+import 'package:ffmpeg_kit_flutter_new/session.dart';
 import 'package:flutter/material.dart';
 import 'package:video_editor/video_editor.dart';
 import 'package:youtube_clone/features/upload/short_video/widget/trim_slinder.dart';
@@ -38,7 +40,19 @@ class _ShortVideoScreenState extends State<ShortVideoScreen> {
     final String command = execute.command;
 
     //actual exporting methods starts from here]
-    FFmpegKit.executeAsync(command);
+    FFmpegKit.executeAsync(
+      command,
+      (session) async {
+        final ReturnCode? code = await session.getReturnCode();
+        if (ReturnCode.isSuccess(code)) {
+          // export video
+        } else {
+          // show some error to user
+        }
+      },
+      null,
+      (status) {},
+    );
   }
 
   @override
