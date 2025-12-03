@@ -39,10 +39,22 @@ class Post extends ConsumerWidget {
                 child: CircleAvatar(
                   radius: 20,
                   backgroundColor: Colors.grey,
-                  backgroundImage: CachedNetworkImageProvider(
-                    user.value!.profilePic,
-                  ),
+                  backgroundImage:
+                      user.value?.profilePic != null &&
+                          user.value!.profilePic.isNotEmpty
+                      ? CachedNetworkImageProvider(user.value!.profilePic)
+                      : null,
+                  child: user.value?.profilePic == null
+                      ? Icon(Icons.person)
+                      : null,
                 ),
+                // child: CircleAvatar(
+                //   radius: 20,
+                //   backgroundColor: Colors.grey,
+                //   backgroundImage: CachedNetworkImageProvider(
+                //     user.value!.profilePic,
+                //   ),
+                // ),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 10),

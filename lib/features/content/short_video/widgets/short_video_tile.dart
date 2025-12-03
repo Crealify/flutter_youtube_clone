@@ -36,9 +36,18 @@ class _ShortVideoTileState extends State<ShortVideoTile> {
       child: shortVideoController!.value.isInitialized
           ? Column(
               children: [
-                AspectRatio(
-                  aspectRatio: 11 / 16,
-                  child: VideoPlayer(shortVideoController!),
+                GestureDetector(
+                  onTap: () {
+                    if (!shortVideoController!.value.isPlaying) {
+                      shortVideoController!.play();
+                    } else {
+                      shortVideoController!.pause();
+                    }
+                  },
+                  child: AspectRatio(
+                    aspectRatio: 11 / 16,
+                    child: VideoPlayer(shortVideoController!),
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(right: 10, left: 10, top: 6),
