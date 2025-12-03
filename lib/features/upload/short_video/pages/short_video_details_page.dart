@@ -49,7 +49,8 @@ class _ShortVideoDetailsPageState extends ConsumerState<ShortVideoDetailsPage> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 TextField(
-                  controller: captionController!,
+                  controller: captionController,
+                  // controller: captionController!
                   decoration: InputDecoration(
                     hintText: "Write a Capiton.",
                     border: OutlineInputBorder(
