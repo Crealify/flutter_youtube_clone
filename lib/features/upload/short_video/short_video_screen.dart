@@ -27,7 +27,7 @@ class _ShortVideoScreenState extends State<ShortVideoScreen> {
       maxDuration: const Duration(seconds: 60),
     );
     editorController!
-        .initialize(aspectRatio: 4 / 3.6)
+        .initialize(aspectRatio: 4 / 2)
         .then((_) => setState(() {}));
   }
 
@@ -48,20 +48,25 @@ class _ShortVideoScreenState extends State<ShortVideoScreen> {
                         children: [
                           IconButton(
                             onPressed: () {},
-                            icon: const Icon(Icons.zoom_out_map_outlined),
+                            icon: const Icon(Icons.arrow_back),
                           ),
-                          CircleAvatar(radius: 18),
+                          CircleAvatar(
+                            radius: 18,
+                            backgroundColor: Colors.blueGrey,
+                          ),
                         ],
                       ),
                     ),
+                    const Spacer(),
 
                     CropGridViewer.preview(controller: editorController!),
+                    const Spacer(),
 
                     // editor cut aauxa
                     MyTrimSlider(controller: editorController!, height: 45),
 
                     Align(
-                      alignment: Alignment.bottomCenter,
+                      alignment: Alignment.bottomRight,
                       child: Container(
                         decoration: BoxDecoration(
                           color: Colors.white,

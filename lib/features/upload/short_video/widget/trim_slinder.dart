@@ -44,6 +44,20 @@ class _MyTrimSliderState extends State<MyTrimSlider> {
             );
           },
         ),
+        Container(
+          width: MediaQuery.of(context).size.width,
+          margin: EdgeInsets.symmetric(vertical: widget.height),
+          child: TrimSlider(
+            controller: widget.controller,
+            height: widget.height,
+            horizontalMargin: widget.height / 4,
+            child: TrimTimeline(
+              controller: widget.controller,
+              padding: EdgeInsets.only(top: 10),
+              textStyle: const TextStyle(color: Colors.white, fontSize: 13),
+            ),
+          ),
+        ),
       ],
     );
   }
