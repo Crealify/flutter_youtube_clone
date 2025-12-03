@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:io';
 
+import 'package:ffmpeg_kit_flutter_new/ffmpeg_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:video_editor/video_editor.dart';
 import 'package:youtube_clone/features/upload/short_video/widget/trim_slinder.dart';
@@ -27,8 +28,17 @@ class _ShortVideoScreenState extends State<ShortVideoScreen> {
       maxDuration: const Duration(seconds: 60),
     );
     editorController!
-        .initialize(aspectRatio: 4 / 2)
+        .initialize(aspectRatio: 4 / 3.6)
         .then((_) => setState(() {}));
+  }
+
+  exportVideo() async {
+    final config = VideoFFmpegVideoEditorConfig(editorController!);
+    final execute = await config.getExecuteConfig();
+    final String command = execute.command;
+
+    //actual exporting methods starts from here]
+    FFmpegKit.executeAsync(command);
   }
 
   @override
