@@ -49,21 +49,32 @@ class _ShortVideoTileState extends State<ShortVideoTile> {
                     child: VideoPlayer(shortVideoController!),
                   ),
                 ),
+
                 Padding(
-                  padding: const EdgeInsets.only(right: 10, left: 10, top: 6),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 6,
+                  ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        widget.shortVideo.caption,
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
+                      Expanded(
+                        child: Text(
+                          widget.shortVideo.caption,
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2, // prevents overflow
                         ),
                       ),
-                      // Text(widget.shortVideo.datePublished.toString())
-                      // timeago package is used to show date beautifully
-                      Text(timeago.format(widget.shortVideo.datePublished)),
+                      const SizedBox(width: 10),
+                      Text(
+                        timeago.format(widget.shortVideo.datePublished),
+                        style: const TextStyle(fontSize: 14),
+                      ),
                     ],
                   ),
                 ),
