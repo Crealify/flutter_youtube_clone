@@ -32,12 +32,14 @@ class _ShortVideoScreenState extends State<ShortVideoScreen> {
       minDuration: const Duration(seconds: 3),
       maxDuration: const Duration(seconds: 60),
     );
+
+    // video aspectio ratio for shorts
     editorController!
         .initialize(aspectRatio: 4 / 3.6)
         .then((_) => setState(() {}));
   }
 
-  exportVideo() async {
+  Future<void> exportVideo() async {
     isExporting.value = true;
     final config = VideoFFmpegVideoEditorConfig(editorController!);
     final execute = await config.getExecuteConfig();
@@ -108,16 +110,20 @@ class _ShortVideoScreenState extends State<ShortVideoScreen> {
                     // editor cut aauxa
                     MyTrimSlider(controller: editorController!, height: 45),
 
-                    Align(
-                      alignment: Alignment.bottomRight,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(18)),
-                        ),
-                        child: TextButton(
-                          onPressed: () {},
-                          child: Text("DONE"),
+                    Padding(
+                      padding: const EdgeInsets.only(right:8.0),
+                      child: Align(
+                        alignment: Alignment.bottomRight,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.all(Radius.circular(18)),
+                          ),
+                          child: TextButton(
+                            
+                            onPressed: exportVideo,
+                            child: Text("DONE", ),
+                          ),
                         ),
                       ),
                     ),
