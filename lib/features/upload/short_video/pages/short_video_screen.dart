@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_constructors_first, use_build_context_synchronously
 import 'dart:io';
 
 import 'package:ffmpeg_kit_flutter_new/ffmpeg_kit.dart';
@@ -6,6 +6,7 @@ import 'package:ffmpeg_kit_flutter_new/return_code.dart';
 import 'package:flutter/material.dart';
 import 'package:video_editor/video_editor.dart';
 import 'package:youtube_clone/cores/methods.dart';
+import 'package:youtube_clone/features/upload/short_video/pages/short_video_details_page.dart';
 import 'package:youtube_clone/features/upload/short_video/widget/trim_slinder.dart';
 
 class ShortVideoScreen extends StatefulWidget {
@@ -53,7 +54,12 @@ class _ShortVideoScreenState extends State<ShortVideoScreen> {
 
           // next page i want user to make caption and all
 
-          Navigator.push(context);
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const ShortVideoDetailsPage(),
+            ),
+          );
         } else {
           // show some error to user
           showErrorSnackBar("Failed, video can not be exported", context);
