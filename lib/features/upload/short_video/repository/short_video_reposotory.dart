@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:youtube_clone/features/upload/short_video/model/short_vidoe_mode.dart';
+import 'package:youtube_clone/features/upload/short_video/model/short_video_mode.dart';
 
 class ShortVideoReposotory {
   final FirebaseAuth auth;
@@ -10,13 +10,13 @@ class ShortVideoReposotory {
 
   Future<void> addShortVideoToFirestore({
     required String caption,
-    required String userId,
+    // required String userId,
     required String video,
     required DateTime datePublished,
   }) async {
     ShortVideoModel shortvideo = ShortVideoModel(
       caption: caption,
-      userId: userId,
+      userId: auth.currentUser!.uid,
       shortVideo: video,
       datePublished: datePublished,
     );

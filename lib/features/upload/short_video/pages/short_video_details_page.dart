@@ -1,22 +1,32 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:youtube_clone/features/auth/pages/flat_button.dart';
+import 'package:youtube_clone/features/upload/short_video/repository/short_video_reposotory.dart';
 
+// adding provider
+final shortVideoProvider = Provider(
+  (ref) => ShortVideoReposotory(
+    auth: FirebaseAuth.instance,
+    firestore: FirebaseFirestore.instance,
+  ),
+);
 
-
-
-class ShortVideoDetailsPage extends StatefulWidget {
+class ShortVideoDetailsPage extends ConsumerStatefulWidget {
   final File video;
   const ShortVideoDetailsPage({super.key, required this.video});
 
   @override
-  State<ShortVideoDetailsPage> createState() => _ShortVideoDetailsPageState();
+  ConsumerState<ShortVideoDetailsPage> createState() =>
+      _ShortVideoDetailsPageState();
 }
 
-class _ShortVideoDetailsPageState extends State<ShortVideoDetailsPage> {
+class _ShortVideoDetailsPageState extends ConsumerState<ShortVideoDetailsPage> {
   final captionController = TextEditingController();
   final DateTime date = DateTime.now();
   @override
@@ -52,7 +62,15 @@ class _ShortVideoDetailsPageState extends State<ShortVideoDetailsPage> {
                   padding: const EdgeInsets.only(bottom: 20),
                   child: FlatButton(
                     text: "PUBLISH",
-                    onPressed: () {},
+                    onPressed: () async {
+                      await ref
+                          .watch(shortVideoProvider)
+                          .addShortVideoToFirestore(
+                            caption: captionController.text,
+                            video: widget.video.path,
+                            datePublished: date,
+                          );
+                    },
                     colour: Colors.green,
                   ),
                 ),
