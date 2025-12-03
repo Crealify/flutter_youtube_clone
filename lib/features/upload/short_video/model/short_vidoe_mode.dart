@@ -1,12 +1,12 @@
 import 'dart:convert';
 
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-class ShortVidoeModel {
+class ShortVideoModel {
   final String caption;
   final String userId;
   final String shortVideo;
   final DateTime datePublished;
-  ShortVidoeModel({
+  ShortVideoModel({
     required this.caption,
     required this.userId,
     required this.shortVideo,
@@ -22,16 +22,14 @@ class ShortVidoeModel {
     };
   }
 
-  factory ShortVidoeModel.fromMap(Map<String, dynamic> map) {
-    return ShortVidoeModel(
+  factory ShortVideoModel.fromMap(Map<String, dynamic> map) {
+    return ShortVideoModel(
       caption: map['caption'] as String,
       userId: map['userId'] as String,
       shortVideo: map['shortVideo'] as String,
-      datePublished: DateTime.fromMillisecondsSinceEpoch(map['datePublished'] as int),
+      datePublished: DateTime.fromMillisecondsSinceEpoch(
+        map['datePublished'] as int,
+      ),
     );
   }
-
-  String toJson() => json.encode(toMap());
-
-  factory ShortVidoeModel.fromJson(String source) => ShortVidoeModel.fromMap(json.decode(source) as Map<String, dynamic>);
 }
