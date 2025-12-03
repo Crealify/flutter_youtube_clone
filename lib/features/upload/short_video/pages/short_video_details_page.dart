@@ -1,8 +1,13 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+
 import 'package:youtube_clone/features/auth/pages/flat_button.dart';
 
 class ShortVideoDetailsPage extends StatefulWidget {
-  const ShortVideoDetailsPage({super.key});
+  final File video;
+  const ShortVideoDetailsPage({super.key, required this.video});
 
   @override
   State<ShortVideoDetailsPage> createState() => _ShortVideoDetailsPageState();
@@ -42,7 +47,7 @@ class _ShortVideoDetailsPageState extends State<ShortVideoDetailsPage> {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 20),
                   child: FlatButton(
-                    text: "PUBLIDH",
+                    text: "PUBLISH",
                     onPressed: () {},
                     colour: Colors.green,
                   ),
