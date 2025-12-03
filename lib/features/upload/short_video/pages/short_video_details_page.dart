@@ -14,9 +14,10 @@ class ShortVideoDetailsPage extends StatefulWidget {
 }
 
 class _ShortVideoDetailsPageState extends State<ShortVideoDetailsPage> {
+  final captionController = TextEditingController();
+  final DateTime date = DateTime.now();
   @override
   Widget build(BuildContext context) {
-    final captionController = TextEditingController();
     return Scaffold(
       appBar: AppBar(
         title: Text(
