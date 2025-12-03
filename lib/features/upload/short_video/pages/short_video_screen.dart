@@ -111,7 +111,7 @@ class _ShortVideoScreenState extends State<ShortVideoScreen> {
                     MyTrimSlider(controller: editorController!, height: 45),
 
                     Padding(
-                      padding: const EdgeInsets.only(right:8.0),
+                      padding: const EdgeInsets.only(right: 8.0),
                       child: Align(
                         alignment: Alignment.bottomRight,
                         child: Container(
@@ -120,9 +120,8 @@ class _ShortVideoScreenState extends State<ShortVideoScreen> {
                             borderRadius: BorderRadius.all(Radius.circular(18)),
                           ),
                           child: TextButton(
-                            
                             onPressed: exportVideo,
-                            child: Text("DONE", ),
+                            child: Text("DONE"),
                           ),
                         ),
                       ),
