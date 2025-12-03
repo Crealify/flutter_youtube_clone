@@ -40,20 +40,23 @@ class _ShortVideoTileState extends State<ShortVideoTile> {
                   aspectRatio: 11 / 16,
                   child: VideoPlayer(shortVideoController!),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      widget.shortVideo.caption,
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+                Padding(
+                  padding: const EdgeInsets.only(right: 10, left: 10, top: 6),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        widget.shortVideo.caption,
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    // Text(widget.shortVideo.datePublished.toString())
-                    // timeago package is used to show date beautifully
-                    Text(timeago.format(widget.shortVideo.datePublished)),
-                  ],
+                      // Text(widget.shortVideo.datePublished.toString())
+                      // timeago package is used to show date beautifully
+                      Text(timeago.format(widget.shortVideo.datePublished)),
+                    ],
+                  ),
                 ),
               ],
             )
