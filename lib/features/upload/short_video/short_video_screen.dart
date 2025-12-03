@@ -3,9 +3,9 @@ import 'dart:io';
 
 import 'package:ffmpeg_kit_flutter_new/ffmpeg_kit.dart';
 import 'package:ffmpeg_kit_flutter_new/return_code.dart';
-import 'package:ffmpeg_kit_flutter_new/session.dart';
 import 'package:flutter/material.dart';
 import 'package:video_editor/video_editor.dart';
+import 'package:youtube_clone/cores/methods.dart';
 import 'package:youtube_clone/features/upload/short_video/widget/trim_slinder.dart';
 
 class ShortVideoScreen extends StatefulWidget {
@@ -19,7 +19,9 @@ class ShortVideoScreen extends StatefulWidget {
 class _ShortVideoScreenState extends State<ShortVideoScreen> {
   // docs batw rakheko
   VideoEditorController? editorController;
-
+  // this helps vidoe apper in ui in realtime
+  final isExporting = ValueNotifier<bool>(false);
+  final exportingProgress = ValueNotifier<double>(0.0);
   @override
   void initState() {
     //
@@ -35,6 +37,7 @@ class _ShortVideoScreenState extends State<ShortVideoScreen> {
   }
 
   exportVideo() async {
+    isExporting.value = true;
     final config = VideoFFmpegVideoEditorConfig(editorController!);
     final execute = await config.getExecuteConfig();
     final String command = execute.command;
@@ -46,12 +49,22 @@ class _ShortVideoScreenState extends State<ShortVideoScreen> {
         final ReturnCode? code = await session.getReturnCode();
         if (ReturnCode.isSuccess(code)) {
           // export video
+          isExporting.value = false;
+
+          // next page i want user to make caption and all
+
+          Navigator.push(context);
         } else {
           // show some error to user
+          showErrorSnackBar("Failed, video can not be exported", context);
         }
       },
       null,
-      (status) {},
+      (status) {
+        exportingProgress.value = config.getFFmpegProgress(
+          status.getTime().toInt(),
+        );
+      },
     );
   }
 
