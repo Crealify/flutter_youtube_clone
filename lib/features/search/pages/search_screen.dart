@@ -64,11 +64,11 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                 children: [
                   IconButton(
                     onPressed: () {},
-                    icon: const Icon(Icons.arrow_back),
+                    icon: const Icon(Icons.arrow_back, color: Colors.grey),
                   ),
                   SizedBox(width: 4),
                   SizedBox(
-                    height: 45,
+                    height: 43,
                     width: 270,
                     child: TextFormField(
                       onChanged: (value) async {
@@ -77,7 +77,22 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                       decoration: InputDecoration(
                         hintText: "Search",
                         border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black),
+                          borderRadius: BorderRadius.circular(18),
+                          borderSide: BorderSide(color: Colors.grey.shade200),
+                        ),
+                        enabledBorder: const OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(18)),
+                          borderSide: BorderSide(color: Colors.blueGrey),
+                        ),
+                        fillColor: const Color(0xffF2F2F2),
+                        contentPadding: const EdgeInsets.only(
+                          left: 13,
+                          bottom: 12,
+                        ),
+
+                        hintStyle: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ),
@@ -85,7 +100,8 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                   Padding(
                     padding: const EdgeInsets.only(right: 10),
                     child: SizedBox(
-                      height: 45,
+                      height: 43,
+                      width: 55,
                       child: CustomButton(
                         iconData: Icons.search,
                         onTap: () {},
