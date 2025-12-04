@@ -15,6 +15,7 @@ class FlatButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 40,
       decoration: BoxDecoration(
         color: colour,
         borderRadius: const BorderRadius.all(Radius.circular(16)),
