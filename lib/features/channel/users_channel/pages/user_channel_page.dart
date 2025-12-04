@@ -25,157 +25,191 @@ class _UserChannelPageState extends State<UserChannelPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            Consumer(
-              builder: (context, ref, child) {
-                return ref
-                    .watch(anyUserDataProvider(widget.userId))
-                    .when(
-                      data: (user) => Column(
-                        children: [
-                          Image.asset("assets/images/flutter background.png"),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              left: 12,
-                              right: 10,
-                              top: 20,
-                            ),
-                            child: Row(
-                              children: [
-                                CircleAvatar(
-                                  radius: 40,
-                                  backgroundColor: Colors.grey,
-                                  backgroundImage: CachedNetworkImageProvider(
-                                    user.profilePic,
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
+            children: [
+              Consumer(
+                builder: (context, ref, child) {
+                  return ref
+                      .watch(anyUserDataProvider(widget.userId))
+                      .when(
+                        data: (user) => Column(
+                          children: [
+                            Image.asset("assets/images/flutter background.png"),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                left: 12,
+                                right: 10,
+                                top: 20,
+                              ),
+                              child: Row(
+                                children: [
+                                  CircleAvatar(
+                                    radius: 40,
+                                    backgroundColor: Colors.grey,
+                                    backgroundImage: CachedNetworkImageProvider(
+                                      user.profilePic,
+                                    ),
                                   ),
-                                ),
 
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 10),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        user.displayName,
-                                        style: TextStyle(
-                                          fontSize: 24,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      Text(
-                                        user.username,
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.blueGrey,
-                                        ),
-                                      ),
-                                      RichText(
-                                        text: TextSpan(
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          user.displayName,
                                           style: TextStyle(
-                                            fontSize: 13,
+                                            fontSize: 24,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Text(
+                                          user.username,
+                                          style: TextStyle(
+                                            fontSize: 15,
                                             fontWeight: FontWeight.bold,
                                             color: Colors.blueGrey,
                                           ),
-                                          children: [
-                                            TextSpan(
-                                              text:
-                                                  "${user.subscriptions.length} subscriptionsc ",
-                                            ),
-
-                                            TextSpan(
-                                              text: "${user.videos} videos ",
-                                            ),
-                                          ],
                                         ),
-                                      ),
-                                    ],
+                                        RichText(
+                                          text: TextSpan(
+                                            style: TextStyle(
+                                              fontSize: 13,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.blueGrey,
+                                            ),
+                                            children: [
+                                              TextSpan(
+                                                text:
+                                                    "${user.subscriptions.length} subscriptionsc ",
+                                              ),
+
+                                              TextSpan(
+                                                text: "${user.videos} videos ",
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              top: 20,
-                              left: 10,
-                              right: 10,
-                            ),
-                            child: SizedBox(
-                              width: double.infinity,
-                              child: FlatButton(
-                                text: "SUBSCRIBE",
-                                onPressed: () {},
-                                colour: Colors.black,
+                                ],
                               ),
                             ),
-                          ),
-                          // haveVideos,
-                          // ? const SizedBox()
-                          // : SizedBox(
-                          //     child: Center(
-                          //       child: Padding(
-                          //         padding: EdgeInsets.only(
-                          //           top:
-                          //               MediaQuery.sizeOf(context).height *
-                          //               0.2,
-                          //         ),
-                          //         child: const Text(
-                          //           "No Videos",
-                          //           style: TextStyle(
-                          //             fontSize: 24,
-                          //             fontWeight: FontWeight.bold,
-                          //           ),
-                          //         ),
-                          //       ),
-                          //     ),
-                          //   ),
-                        ],
-                      ),
-                      error: (error, stackTrace) => const ErrorPage(),
-                      loading: () => Loader(),
-                    );
-              },
-            ),
 
-            // second consumer widget
-            Consumer(
-              builder: (context, ref, child) {
-                return ref
-                    .watch(eachChannelVideosProvider(widget.userId))
-                    .when(
-                      data: (videos) => Padding(
-                        padding: EdgeInsets.only(
-                          top: MediaQuery.sizeOf(context).height * 0.2,
-                        ),
-                        child: SizedBox(
-                          height: 80,
-                          child: GridView.builder(
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  crossAxisSpacing: 8,
-                                  mainAxisSpacing: 8,
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                top: 20,
+                                left: 10,
+                                right: 10,
+                              ),
+                              child: SizedBox(
+                                width: double.infinity,
+                                child: FlatButton(
+                                  text: "SUBSCRIBE",
+                                  onPressed: () {},
+                                  colour: Colors.black,
                                 ),
-                            itemCount: videos.length,
-                            itemBuilder: (context, index) {
-                              if (videos.isNotEmpty) {
-                                return Post(video: videos[index]);
-                              }
-                              return const SizedBox();
-                            },
+                              ),
+                            ),
+                            // haveVideos,
+                            // ? const SizedBox()
+                            // : SizedBox(
+                            //     child: Center(
+                            //       child: Padding(
+                            //         padding: EdgeInsets.only(
+                            //           top:
+                            //               MediaQuery.sizeOf(context).height *
+                            //               0.2,
+                            //         ),
+                            //         child: const Text(
+                            //           "No Videos",
+                            //           style: TextStyle(
+                            //             fontSize: 24,
+                            //             fontWeight: FontWeight.bold,
+                            //           ),
+                            //         ),
+                            //       ),
+                            //     ),
+                            //   ),
+                            user.videos == 0
+                                ? Padding(
+                                    padding: const EdgeInsets.only(top: 14),
+                                    child: Center(
+                                      child: const Text(
+                                        "No VIdeo",
+                                        style: TextStyle(
+                                          fontSize: 23,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                : Padding(
+                                    padding: const EdgeInsets.only(
+                                      left: 10,
+                                      top: 14,
+                                    ),
+                                    //some problem in video models so video count is not updated
+                                    child: Text(
+                                      "${user.displayName}' Videos ",
+                                      style: TextStyle(
+                                        fontSize: 23,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                          ],
+                        ),
+                        error: (error, stackTrace) => const ErrorPage(),
+                        loading: () => Loader(),
+                      );
+                },
+              ),
+
+              // second consumer widget
+              Consumer(
+                builder: (context, ref, child) {
+                  return ref
+                      .watch(eachChannelVideosProvider(widget.userId))
+                      .when(
+                        data: (videos) => Padding(
+                          padding: EdgeInsets.only(
+                            top: MediaQuery.sizeOf(context).height * 0.2,
+                          ),
+                          child: SizedBox(
+                            height: 80,
+                            child: GridView.builder(
+                              shrinkWrap: true,
+                              physics: NeverScrollableScrollPhysics(),
+
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    crossAxisSpacing: 8,
+                                    mainAxisSpacing: 8,
+                                  ),
+                              itemCount: videos.length,
+                              itemBuilder: (context, index) {
+                                if (videos.isNotEmpty) {
+                                  return Post(video: videos[index]);
+                                }
+                                return const SizedBox();
+                              },
+                            ),
                           ),
                         ),
-                      ),
 
-                      error: (error, stackTrace) => const ErrorPage(),
-                      loading: () => const Loader(),
-                    );
-              },
-            ),
-          ],
+                        error: (error, stackTrace) => const ErrorPage(),
+                        loading: () => const Loader(),
+                      );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
