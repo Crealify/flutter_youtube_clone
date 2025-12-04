@@ -8,6 +8,7 @@ import 'package:youtube_clone/cores/screens/loader.dart';
 import 'package:youtube_clone/cores/widgets/flat_button.dart';
 import 'package:youtube_clone/features/auth/provider/user_provider.dart';
 import 'package:youtube_clone/features/channel/users_channel/provider/channel_provider.dart';
+import 'package:youtube_clone/features/upload/long_video/parts/post.dart';
 
 class UserChannelPage extends StatefulWidget {
   final String userId;
@@ -145,15 +146,26 @@ class _UserChannelPageState extends State<UserChannelPage> {
                 return ref
                     .watch(eachChannelVideosProvider(widget.userId))
                     .when(
-                      data: (data) => Padding(
+                      data: (videos) => Padding(
                         padding: EdgeInsets.only(
                           top: MediaQuery.sizeOf(context).height * 0.2,
                         ),
-                        child: const Text(
-                          "No Videos",
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
+                        child: SizedBox(
+                          height: 80,
+                          child: GridView.builder(
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  crossAxisSpacing: 8,
+                                  mainAxisSpacing: 8,
+                                ),
+                            itemCount: videos.length,
+                            itemBuilder: (context, index) {
+                              if (videos.isNotEmpty) {
+                                return Post(video: videos[index]);
+                              }
+                              return const SizedBox();
+                            },
                           ),
                         ),
                       ),
