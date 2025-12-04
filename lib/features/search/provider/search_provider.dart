@@ -2,17 +2,18 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:youtube_clone/features/auth/model/user_model.dart';
 
-final allChannelsProvider = Provider((ref) async {
+import '../../upload/long_video/video_model.dart';
+
+final allChannelsProvider = FutureProvider<List<UserModel>>((ref) async {
   final usersMap = await FirebaseFirestore.instance.collection("user").get();
-  List<UserModel> users = usersMap.docs
-      .map((user) => UserModel.fromMap(user.data()))
-      .toList();
-  return users;
+
+  return usersMap.docs.map((user) => UserModel.fromMap(user.data())).toList();
 });
-final allVideosProvider = Provider((ref) async {
-  final usersMap = await FirebaseFirestore.instance.collection("vidoes").get();
-  List<UserModel> video = usersMap.docs
-      .map((video) => UserModel.fromMap(video.data()))
+
+final allVideosProvider = FutureProvider<List<VideoModel>>((ref) async {
+  final videosMap = await FirebaseFirestore.instance.collection("videos").get();
+
+  return videosMap.docs
+      .map((video) => VideoModel.fromMap(video.data()))
       .toList();
-  return video;
 });

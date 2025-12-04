@@ -5,6 +5,7 @@ import 'package:youtube_clone/features/auth/model/user_model.dart';
 import 'package:youtube_clone/features/search/provider/search_provider.dart';
 import 'package:youtube_clone/features/search/widgets/search_channel_tile.dart';
 import 'package:youtube_clone/features/upload/long_video/parts/post.dart';
+import 'package:youtube_clone/features/upload/long_video/video_model.dart';
 
 class SearchScreen extends ConsumerStatefulWidget {
   const SearchScreen({super.key});
@@ -18,20 +19,30 @@ class SearchScreen extends ConsumerStatefulWidget {
 class _SearchScreenState extends ConsumerState<SearchScreen> {
   List foundItems = [];
 
-  filterList(String keyWordSelected) async {
-    List<UserModel> users = await ref.watch(allChannelsProvider);
+  //
+  Future<void> filterList(String keywordSelected) async {
+    List<UserModel> users = await ref.watch(allChannelsProvider.future);
+    List<VideoModel> videos = await ref.watch(allVideosProvider.future);
+
     List result = [];
-    final foundChannels = users.where((user) {
-      return user.displayName.toString().toLowerCase().contains(
-        keyWordSelected,
-      );
-    }).toList();
+
+    // filter users
+    final foundChannels = users
+        .where(
+          (user) => user.displayName.toLowerCase().contains(
+            keywordSelected.toLowerCase(),
+          ),
+        )
+        .toList();
     result.addAll(foundChannels);
-    final foundVideos = users.where((video) {
-      return video.displayName.toString().toLowerCase().contains(
-        keyWordSelected,
-      );
-    }).toList();
+
+    // filter videos
+    final foundVideos = videos
+        .where(
+          (video) =>
+              video.title.toLowerCase().contains(keywordSelected.toLowerCase()),
+        )
+        .toList();
     result.addAll(foundVideos);
 
     setState(() {
@@ -60,6 +71,9 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                     height: 45,
                     width: 270,
                     child: TextFormField(
+                      onChanged: (value) async {
+                        await filterList(value);
+                      },
                       decoration: InputDecoration(
                         hintText: "Search",
                         border: OutlineInputBorder(
@@ -81,8 +95,8 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                   ),
                 ],
               ),
-              SearchChannelTile(),
 
+              // SearchChannelTile(user: user),
               Expanded(
                 child: ListView.builder(
                   itemCount: foundItems.length,
@@ -92,11 +106,16 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
 
                     if (selectedItem.type == "video") {
                       itemWidgets.add(Post(video: selectedItem));
-                    } else if (selectedItem.type == "user") {
-                      itemWidgets.add(SearchChannelTile());
-                    } else if (foundItems.isEmpty) {
+                    }
+
+                    if (selectedItem.type == "user") {
+                      itemWidgets.add(SearchChannelTile(user: selectedItem));
+                    }
+
+                    if (foundItems.isEmpty) {
                       return const SizedBox();
                     }
+
                     return itemWidgets[0];
                   },
                 ),

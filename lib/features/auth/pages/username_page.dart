@@ -112,10 +112,6 @@ class _UsernamePageState extends ConsumerState<UsernamePage> {
                               email: widget.email,
                               profilePic: widget.profilePic,
                               description: "",
-                              subscriptions: [],
-                              videos: 0,
-                              userId: "",
-                              type: "user",
                             )
                       : null;
                   // add user data inside databeas

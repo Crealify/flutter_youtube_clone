@@ -1,8 +1,14 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+
 import 'package:youtube_clone/cores/widgets/flat_button.dart';
+import 'package:youtube_clone/features/auth/model/user_model.dart';
 
 class SearchChannelTile extends StatelessWidget {
-  const SearchChannelTile({super.key});
+  //have to give actual value
+  final UserModel user;
+  const SearchChannelTile({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +20,11 @@ class SearchChannelTile extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CircleAvatar(backgroundColor: Colors.blueGrey, radius: 40),
+              CircleAvatar(
+                backgroundColor: Colors.blueGrey,
+                radius: 40,
+                backgroundImage: CachedNetworkImageProvider(user.profilePic),
+              ),
 
               Padding(
                 padding: const EdgeInsets.only(right: 20, left: 20, top: 10),
@@ -23,18 +33,18 @@ class SearchChannelTile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Anil Bhattarai",
+                      user.displayName,
                       style: TextStyle(
                         fontSize: 19,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
                     Text(
-                      "@crealify",
+                      user.username,
                       style: TextStyle(color: Colors.blueGrey, fontSize: 13),
                     ),
                     Text(
-                      "No Subscribers",
+                      user.subscriptions.toString(),
                       style: TextStyle(color: Colors.blueGrey),
                     ),
                   ],

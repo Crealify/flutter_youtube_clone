@@ -21,11 +21,7 @@ class UserDataService {
     required String username,
     required String email,
     required String profilePic,
-    required List<String> subscriptions,
-    required int videos,
-    required String userId,
     required String description,
-    required String type,
   }) async {
     UserModel user = UserModel(
       displayName: displayName,
@@ -36,7 +32,7 @@ class UserDataService {
       videos: 0,
       userId: auth.currentUser!.uid,
       description: description,
-      type: type,
+      type: "user",
     );
 
     await firestore
