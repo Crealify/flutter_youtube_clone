@@ -4,11 +4,11 @@ import 'package:youtube_clone/features/auth/model/user_model.dart';
 
 import '../../upload/long_video/video_model.dart';
 
-final allChannelsProvider = FutureProvider<List<UserModel>>((ref) async {
-  final usersMap = await FirebaseFirestore.instance.collection("user").get();
+// final allChannelsProvider = FutureProvider<List<UserModel>>((ref) async {
+//   final usersMap = await FirebaseFirestore.instance.collection("user").get();
 
-  return usersMap.docs.map((user) => UserModel.fromMap(user.data())).toList();
-});
+//   return usersMap.docs.map((user) => UserModel.fromMap(user.data())).toList();
+// });
 
 final allVideosProvider = FutureProvider<List<VideoModel>>((ref) async {
   final videosMap = await FirebaseFirestore.instance.collection("videos").get();
@@ -17,3 +17,17 @@ final allVideosProvider = FutureProvider<List<VideoModel>>((ref) async {
       .map((video) => VideoModel.fromMap(video.data()))
       .toList();
 });
+final allChannelsProvider = Provider((ref) async {
+  final usersMap = await FirebaseFirestore.instance.collection("users").get();
+  List<UserModel> users = usersMap.docs
+      .map((user) => UserModel.fromMap(user.data()))
+      .toList();
+  return users;
+});
+// final allVideosProvider = Provider((ref) async {
+//   final usersMap = await FirebaseFirestore.instance.collection("videos").get();
+//   List<UserModel> videos = usersMap.docs
+//       .map((video) => UserModel.fromMap(video.data()))
+//       .toList();
+//   return videos;
+// });

@@ -21,7 +21,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
 
   //
   Future<void> filterList(String keywordSelected) async {
-    List<UserModel> users = await ref.watch(allChannelsProvider.future);
+    List<UserModel> users = await ref.watch(allChannelsProvider);
     List<VideoModel> videos = await ref.watch(allVideosProvider.future);
 
     List result = [];

@@ -129,9 +129,6 @@ class _VideoDetailsPageState extends ConsumerState<VideoDetailsPage> {
                                   datePublished: DateTime.now(),
                                   userId:
                                       FirebaseAuth.instance.currentUser!.uid,
-                                  views: '',
-                                  like: [],
-                                  type: 'video',
                                 );
                           },
 

@@ -17,10 +17,7 @@ class VideoRepository {
     required String title,
     required String videoId,
     required DateTime datePublished,
-    required String views,
     required String userId,
-    required List like,
-    required String type,
   }) async {
     VideoModel video = VideoModel(
       vidoeUrl: videoUrl,
@@ -31,7 +28,7 @@ class VideoRepository {
       videoId: videoId,
       userId: userId,
       likes: [],
-      type: type,
+      type: "video",
     );
     await firestore.collection("videos").doc(videoId).set(video.toMap());
   }
