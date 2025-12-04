@@ -62,9 +62,9 @@ class AccountPage extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: 16,
                                 color: Colors.blueGrey,
-                              ),
-                            ),
+                              ),),
                           ),
+                          
                         ],
                       ),
                     ),
