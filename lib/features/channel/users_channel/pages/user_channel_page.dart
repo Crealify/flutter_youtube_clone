@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:youtube_clone/features/auth/pages/flat_button.dart';
+import 'package:youtube_clone/cores/widgets/flat_button.dart';
 
 class UserChannelPage extends StatefulWidget {
   const UserChannelPage({super.key});

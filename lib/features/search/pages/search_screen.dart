@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_clone/cores/widgets/custom_botton.dart';
+import 'package:youtube_clone/features/search/widgets/search_channel_tile.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});
@@ -19,7 +20,7 @@ class SearchScreen extends StatelessWidget {
                     onPressed: () {},
                     icon: const Icon(Icons.arrow_back),
                   ),
-                  SizedBox(width: 6),
+                  SizedBox(width: 4),
                   SizedBox(
                     height: 45,
                     width: 270,
@@ -32,7 +33,6 @@ class SearchScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Spacer(),
                   Padding(
                     padding: const EdgeInsets.only(right: 10),
                     child: SizedBox(
@@ -46,6 +46,7 @@ class SearchScreen extends StatelessWidget {
                   ),
                 ],
               ),
+              SearchChannelTile(),
             ],
           ),
         ),

@@ -9,7 +9,7 @@ class FlatButton extends StatelessWidget {
     super.key,
     required this.text,
     required this.onPressed,
-    required this.colour, 
+    required this.colour,
   });
 
   @override
@@ -19,11 +19,13 @@ class FlatButton extends StatelessWidget {
         color: colour,
         borderRadius: const BorderRadius.all(Radius.circular(16)),
       ),
-      child: TextButton(
-        onPressed: onPressed,
-        child: Text(
-          text,
-          style: const TextStyle(color: Colors.white, fontSize: 13),
+      child: SizedBox(
+        child: TextButton(
+          onPressed: onPressed,
+          child: Text(
+            text,
+            style: const TextStyle(color: Colors.white, fontSize: 15),
+          ),
         ),
       ),
     );

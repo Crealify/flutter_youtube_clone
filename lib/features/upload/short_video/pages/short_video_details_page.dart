@@ -5,8 +5,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:youtube_clone/cores/widgets/flat_button.dart';
 
-import 'package:youtube_clone/features/auth/pages/flat_button.dart';
 import 'package:youtube_clone/features/upload/short_video/repository/short_video_reposotory.dart';
 
 // adding provider
