@@ -4,9 +4,11 @@ import 'package:youtube_clone/features/content/short_video/pages/short_video_pag
 import 'package:youtube_clone/features/search/pages/search_screen.dart';
 
 List pages = [
-  SearchScreen(),
   LongVideoScreen(),
   ShortVideoPage(),
+  Center(child: Text("Upload ")),
 
-  Center(child: Text("Log out ")),
+  SearchScreen(),
+
+  // LogoutPage(),
 ];

@@ -293,6 +293,8 @@ class _VideoState extends ConsumerState<Video> {
                         color: softBlueGreyBackGround,
                         borderRadius: BorderRadius.all(Radius.circular(25)),
                       ),
+
+                      //also we can use steambuilder and make changes see on real time
                       child: Row(
                         children: [
                           GestureDetector(
