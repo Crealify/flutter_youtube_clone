@@ -297,7 +297,16 @@ class _VideoState extends ConsumerState<Video> {
                         children: [
                           GestureDetector(
                             onTap: likeVideo,
-                            child: Icon(Icons.thumb_up, size: 15.5),
+                            child: Icon(
+                              Icons.thumb_up,
+                              size: 15.5,
+                              color:
+                                  widget.video.likes.contains(
+                                    FirebaseAuth.instance.currentUser!.uid,
+                                  )
+                                  ? Colors.blue
+                                  : Colors.black,
+                            ),
                           ),
                           const SizedBox(width: 19),
                           const Icon(Icons.thumb_down, size: 15.5),
