@@ -68,7 +68,9 @@ class _VideoState extends ConsumerState<Video> {
     _controller!.seekTo(position);
   }
 
-  
+  likeVideo()async {
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -286,7 +288,7 @@ class _VideoState extends ConsumerState<Video> {
                       child: Row(
                         children: [
                           GestureDetector(
-                            onTap: (){},
+                            onTap: likeVideo,
                             child: Icon(Icons.thumb_up, size: 15.5),
                           ),
                           const SizedBox(width: 19),
