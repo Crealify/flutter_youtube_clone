@@ -308,6 +308,8 @@ class _VideoState extends ConsumerState<Video> {
                                   : Colors.black,
                             ),
                           ),
+                          const SizedBox(width: 5),
+                          Text("${widget.video.likes.length}"),
                           const SizedBox(width: 19),
                           const Icon(Icons.thumb_down, size: 15.5),
                         ],
