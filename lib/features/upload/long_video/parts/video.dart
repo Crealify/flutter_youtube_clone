@@ -56,8 +56,19 @@ class _VideoState extends ConsumerState<Video> {
     }
   }
 
-  goBackward() {}
-  goFordward() {}
+  goBackward() {
+    Duration position = _controller!.value.position;
+    position = position - Duration(seconds: 1);
+    _controller!.seekTo(position);
+  }
+
+  goFordward() {
+    Duration position = _controller!.value.position;
+    position = position + Duration(seconds: 1);
+    _controller!.seekTo(position);
+  }
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -275,7 +286,7 @@ class _VideoState extends ConsumerState<Video> {
                       child: Row(
                         children: [
                           GestureDetector(
-                            onTap: () {},
+                            onTap: (){},
                             child: Icon(Icons.thumb_up, size: 15.5),
                           ),
                           const SizedBox(width: 19),
