@@ -33,10 +33,18 @@ class VideoRepository {
     await firestore.collection("videos").doc(videoId).set(video.toMap());
   }
 
-  likeVideo({likes, videoId, currentUserId}) async {
-    FirebaseFirestore.instance.collection("videos").doc(videoId).update({
-      // arrayUnion is used to modified and update field documents
-      "likes": FieldValue.arrayUnion([currentUserId]),
-    });
+  likeVideo({List? likes, videoId, currentUserId}) async {
+    if (!likes!.contains(currentUserId)) {
+      FirebaseFirestore.instance.collection("videos").doc(videoId).update({
+        // arrayUnion is used to modified and update field documents
+        "likes": FieldValue.arrayUnion([currentUserId]),
+      });
+    }
+    if (likes.contains(currentUserId)) {
+      FirebaseFirestore.instance.collection("videos").doc(videoId).update({
+        // arrayUnion is used to modified and update field documents
+        "likes": FieldValue.arrayRemove([currentUserId]),
+      });
+    }
   }
 }
