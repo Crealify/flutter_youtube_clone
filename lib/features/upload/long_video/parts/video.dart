@@ -12,9 +12,12 @@ import 'package:youtube_clone/cores/screens/loader.dart';
 import 'package:youtube_clone/cores/widgets/flat_button.dart';
 import 'package:youtube_clone/features/auth/model/user_model.dart';
 import 'package:youtube_clone/features/auth/provider/user_provider.dart';
+import 'package:youtube_clone/features/content/comment/comment_provider.dart';
 import 'package:youtube_clone/features/content/comment/comment_sheet.dart';
+import 'package:youtube_clone/features/upload/comments/comment_model.dart';
 import 'package:youtube_clone/features/upload/long_video/parts/post.dart';
 import 'package:youtube_clone/features/upload/long_video/video_model.dart';
+import 'package:youtube_clone/features/upload/long_video/widgets/first_video_comment.dart';
 import 'package:youtube_clone/features/upload/long_video/widgets/video_externel_buttons.dart';
 
 class Video extends ConsumerStatefulWidget {
@@ -310,7 +313,7 @@ class _VideoState extends ConsumerState<Video> {
                 onTap: () {
                   showModalBottomSheet(
                     context: context,
-                    builder: (context) => CommentSheet(video: widget.video,),
+                    builder: (context) => CommentSheet(video: widget.video),
                   );
                 },
                 child: Container(
@@ -320,6 +323,17 @@ class _VideoState extends ConsumerState<Video> {
                   ),
                   height: 45,
                   width: 200,
+                  child: Consumer(
+                    builder: (context, ref, child) {
+                      final AsyncValue<List<CommentModel>> comments = ref.watch(
+                        commentsProvider(widget.video.videoId),
+                      );
+                      if (comments.value!.isEmpty) {
+                        return const SizedBox();
+                      }
+                      return VideoFirstComment();
+                    },
+                  ),
                 ),
               ),
             ),
