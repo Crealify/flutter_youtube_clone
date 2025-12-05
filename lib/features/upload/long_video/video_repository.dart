@@ -32,19 +32,28 @@ class VideoRepository {
     );
     await firestore.collection("videos").doc(videoId).set(video.toMap());
   }
-//likes is a type of future and doesnot return so it is void type
-  Future<void>likeVideo({List? likes, videoId, currentUserId}) async {
+
+  //likes is a type of future and doesnot return so it is void type
+  Future<void> likeVideo({
+    required List? likes,
+    required videoId,
+    required currentUserId,
+  }) async {
     if (!likes!.contains(currentUserId)) {
-      await FirebaseFirestore.instance.collection("videos").doc(videoId).update({
-        // arrayUnion is used to modified and update field documents
-        "likes": FieldValue.arrayUnion([currentUserId]),
-      });
+      await FirebaseFirestore.instance.collection("videos").doc(videoId).update(
+        {
+          // arrayUnion is used to modified and update field documents
+          "likes": FieldValue.arrayUnion([currentUserId]),
+        },
+      );
     }
     if (likes.contains(currentUserId)) {
-      await FirebaseFirestore.instance.collection("videos").doc(videoId).update({
-        // arrayUnion is used to modified and update field documents
-        "likes": FieldValue.arrayRemove([currentUserId]),
-      });
+      await FirebaseFirestore.instance.collection("videos").doc(videoId).update(
+        {
+          // arrayUnion is used to modified and update field documents
+          "likes": FieldValue.arrayRemove([currentUserId]),
+        },
+      );
     }
   }
 }

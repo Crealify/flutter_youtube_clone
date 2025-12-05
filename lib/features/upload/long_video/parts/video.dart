@@ -2,6 +2,7 @@
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:video_player/video_player.dart';
@@ -16,6 +17,7 @@ import 'package:youtube_clone/features/content/comment/comment_provider.dart';
 import 'package:youtube_clone/features/content/comment/comment_sheet.dart';
 import 'package:youtube_clone/features/upload/long_video/parts/post.dart';
 import 'package:youtube_clone/features/upload/long_video/video_model.dart';
+import 'package:youtube_clone/features/upload/long_video/video_repository.dart';
 import 'package:youtube_clone/features/upload/long_video/widgets/first_video_comment.dart';
 import 'package:youtube_clone/features/upload/long_video/widgets/video_externel_buttons.dart';
 
@@ -68,8 +70,14 @@ class _VideoState extends ConsumerState<Video> {
     _controller!.seekTo(position);
   }
 
-  likeVideo()async {
-
+  likeVideo() async {
+    await ref
+        .watch(longVideoProvider)
+        .likeVideo(
+          likes: widget.video.likes,
+          videoId: widget.video.userId,
+          currentUserId: FirebaseAuth.instance.currentUser!.uid,
+        );
   }
 
   @override
