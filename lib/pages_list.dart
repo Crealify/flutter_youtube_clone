@@ -5,9 +5,8 @@ import 'package:youtube_clone/features/search/pages/search_screen.dart';
 
 List pages = [
   SearchScreen(),
-
-  ShortVideoPage(),
   LongVideoScreen(),
+  ShortVideoPage(),
 
   Center(child: Text("Log out ")),
 ];
