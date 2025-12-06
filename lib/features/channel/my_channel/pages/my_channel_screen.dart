@@ -26,7 +26,7 @@ class MyChannelScreen extends ConsumerWidget {
                     children: [
                       // top header
                       TopHeader(user: currentUser),
-                      const Text("More about Crealify!"),
+                      // const Text("More about Crealify!"),
                       const TapBottons(),
                       // tab bar
                       const TapBarPage(),

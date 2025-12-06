@@ -76,7 +76,7 @@ class _VideoState extends ConsumerState<Video> {
         .watch(longVideoProvider)
         .likeVideo(
           likes: widget.video.likes,
-          videoId: widget.video.userId,
+          videoId: widget.video.videoId,
           currentUserId: FirebaseAuth.instance.currentUser!.uid,
         );
   }
@@ -266,12 +266,12 @@ class _VideoState extends ConsumerState<Video> {
                   Spacer(),
                   SizedBox(
                     height: 35,
-                    width: 100,
+                    width: 96,
                     child: Padding(
-                      padding: const EdgeInsets.only(right: 6),
+                      padding: const EdgeInsets.only(right: 2),
                       child: FlatButton(
                         text: "Subscribe",
-                        onPressed: ()async {
+                        onPressed: () async {
                           //subscribe channel
                           await ref
                               .watch(subscribeChannelProvider)
@@ -282,7 +282,7 @@ class _VideoState extends ConsumerState<Video> {
                                 subscriptions: user.value!.subscriptions,
                               );
                         },
-                        colour: Colors.black,
+                        colour: Colors.red.shade900,
                       ),
                     ),
                   ),
@@ -308,23 +308,71 @@ class _VideoState extends ConsumerState<Video> {
                       //also we can use steambuilder and make changes see on real time
                       child: Row(
                         children: [
-                          GestureDetector(
-                            onTap: likeVideo,
-                            child: Icon(
-                              Icons.thumb_up,
-                              size: 15.5,
-                              color:
-                                  widget.video.likes.contains(
-                                    FirebaseAuth.instance.currentUser!.uid,
-                                  )
-                                  ? Colors.blue
-                                  : Colors.black,
+                          // GestureDetector(
+                          //   onTap: likeVideo,
+                          //   child: Icon(
+                          //     Icons.thumb_up,
+                          //     size: 15.5,
+                          //     color:
+                          //         widget.video.likes.contains(
+                          //           FirebaseAuth.instance.currentUser!.uid,
+                          //         )
+                          //         ? Colors.blue
+                          //         : Colors.black,
+                          //   ),
+                          // ),
+                          // const SizedBox(width: 5),
+                          // Text("${widget.video.likes.length}"),
+                          // const SizedBox(width: 19),
+                          // const Icon(Icons.thumb_down, size: 15.5),
+                          Material(
+                            color: softBlueGreyBackGround,
+                            borderRadius: BorderRadius.circular(25),
+                            child: InkWell(
+                              borderRadius: BorderRadius.circular(25),
+                              onTap: likeVideo,
+                              splashColor: Colors.blue,
+                              highlightColor: Colors.blue,
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 15,
+                                  vertical: 6,
+                                ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(
+                                      Icons.thumb_up_alt_rounded,
+                                      size: 18,
+                                      color:
+                                          widget.video.likes.contains(
+                                            FirebaseAuth
+                                                .instance
+                                                .currentUser!
+                                                .uid,
+                                          )
+                                          ? Colors.blue
+                                          : Colors.black87,
+                                    ),
+                                    const SizedBox(width: 5),
+                                    Text(
+                                      "${widget.video.likes.length}",
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 13.5,
+                                      ),
+                                    ),
+                                    const SizedBox(width: 15),
+                                    Icon(
+                                      Icons.thumb_down_alt_rounded,
+                                      size: 18,
+                                      color: Colors.black54,
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
                           ),
-                          const SizedBox(width: 5),
-                          Text("${widget.video.likes.length}"),
-                          const SizedBox(width: 19),
-                          const Icon(Icons.thumb_down, size: 15.5),
                         ],
                       ),
                     ),

@@ -36,26 +36,20 @@ class HomeChannelPages extends StatelessWidget {
                             ),
                           ),
                         )
-                      : SizedBox(
-                          height: 80,
-                          child: GridView.builder(
-                            shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
-
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  crossAxisSpacing: 8,
-                                  mainAxisSpacing: 8,
-                                ),
-                            itemCount: videos.length,
-                            itemBuilder: (context, index) {
-                              if (videos.isNotEmpty) {
-                                return Post(video: videos[index]);
-                              }
-                              return const SizedBox();
-                            },
-                          ),
+                      : GridView.builder(
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                crossAxisSpacing: 8,
+                                mainAxisSpacing: 8,
+                              ),
+                          itemCount: videos.length,
+                          itemBuilder: (context, index) {
+                            if (videos.isNotEmpty) {
+                              return Post(video: videos[index]);
+                            }
+                            return const SizedBox();
+                          },
                         ),
                 ),
 

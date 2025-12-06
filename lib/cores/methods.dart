@@ -98,7 +98,7 @@ Future<String> uploadToCloudinary(File file, String folder) async {
             : CloudinaryResourceType.Image,
       ),
     );
-
+    //this securedUrl is used to store the code in firebase document in  safe way in firestore of cloundniary
     return response.secureUrl;
   } catch (e) {
     throw Exception('Failed to upload file: $e');

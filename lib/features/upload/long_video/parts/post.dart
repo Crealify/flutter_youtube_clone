@@ -30,7 +30,7 @@ class Post extends ConsumerWidget {
         //adding viewFeature
         FirebaseFirestore.instance
             .collection("videos")
-            .doc(video.videoId)
+            .doc(video.userId)
             .update({"views": FieldValue.increment(1)});
       },
       child: Column(
