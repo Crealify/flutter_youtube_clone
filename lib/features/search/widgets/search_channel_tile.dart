@@ -78,7 +78,7 @@ class SearchChannelTile extends ConsumerWidget {
                       await ref
                           .watch(subscribeChannelProvider)
                           .subscribeChannel(
-                            userId: user..userId,
+                            userId: user.userId,
                             currentUserId:
                                 FirebaseAuth.instance.currentUser!.uid,
                             subscriptions: user.subscriptions,

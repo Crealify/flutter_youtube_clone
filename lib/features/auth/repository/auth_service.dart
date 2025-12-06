@@ -25,4 +25,9 @@ class AuthService {
     );
     await auth.signInWithCredential(credential);
   }
+
+  signOut() async {
+    await googleSignIn.signOut();
+    await auth.signOut();
+  }
 }
