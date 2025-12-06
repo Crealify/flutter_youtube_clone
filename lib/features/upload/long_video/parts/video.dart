@@ -13,6 +13,7 @@ import 'package:youtube_clone/cores/screens/loader.dart';
 import 'package:youtube_clone/cores/widgets/flat_button.dart';
 import 'package:youtube_clone/features/auth/model/user_model.dart';
 import 'package:youtube_clone/features/auth/provider/user_provider.dart';
+import 'package:youtube_clone/features/channel/users_channel/subscribe_repository.dart';
 import 'package:youtube_clone/features/content/comment/comment_provider.dart';
 import 'package:youtube_clone/features/content/comment/comment_sheet.dart';
 import 'package:youtube_clone/features/upload/long_video/parts/post.dart';
@@ -270,7 +271,17 @@ class _VideoState extends ConsumerState<Video> {
                       padding: const EdgeInsets.only(right: 6),
                       child: FlatButton(
                         text: "Subscribe",
-                        onPressed: () {},
+                        onPressed: ()async {
+                          //subscribe channel
+                          await ref
+                              .watch(subscribeChannelProvider)
+                              .subscribeChannel(
+                                userId: user.value!.userId,
+                                currentUserId:
+                                    FirebaseAuth.instance.currentUser!.uid,
+                                subscriptions: user.value!.subscriptions,
+                              );
+                        },
                         colour: Colors.black,
                       ),
                     ),
