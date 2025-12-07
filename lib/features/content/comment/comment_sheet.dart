@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -62,7 +63,7 @@ class _CommentSheetState extends ConsumerState<CommentSheet> {
                 .map((comment) => CommentModel.fromMap(comment.data()))
                 .toList();
 
-            // note yeo Expended Le wrap nagare ui ma show jo hudaina 
+            // note yeo Expended Le wrap nagare ui ma show jo hudaina
             return Expanded(
               child: ListView.builder(
                 itemCount: comments.length,
@@ -78,7 +79,13 @@ class _CommentSheetState extends ConsumerState<CommentSheet> {
           padding: const EdgeInsets.only(bottom: 10, right: 10, left: 10),
           child: Row(
             children: [
-              CircleAvatar(radius: 18, backgroundColor: Colors.grey),
+              CircleAvatar(
+                radius: 18,
+                backgroundColor: Colors.grey,
+                backgroundImage: CachedNetworkImageProvider(
+                  user.value!.profilePic,
+                ),
+              ),
               const SizedBox(width: 10),
               SizedBox(
                 height: 45,

@@ -22,6 +22,8 @@ import 'package:youtube_clone/features/upload/long_video/video_repository.dart';
 import 'package:youtube_clone/features/upload/long_video/widgets/first_video_comment.dart';
 import 'package:youtube_clone/features/upload/long_video/widgets/video_externel_buttons.dart';
 
+import '../../comments/comment_model.dart';
+
 class Video extends ConsumerStatefulWidget {
   final VideoModel video;
   const Video({super.key, required this.video});
@@ -415,52 +417,54 @@ class _VideoState extends ConsumerState<Video> {
                   ),
                   height: 80,
                   width: 200,
-                  // child: Consumer(
-                  //   builder: (context, ref, child) {
-                  //     final AsyncValue<List<CommentModel>> comments = ref.watch(
-                  //       commentsProvider(widget.video.videoId),
-                  //     );
-                  //     if (comments.value!.isEmpty) {
-                  //       return const SizedBox();
-                  //     }
-                  //     return VideoFirstComment(
-                  //       comments: comments.value!,
-                  //       user: user.value!,
-                  //     );
-                  //   },
-                  // ),
                   child: Consumer(
                     builder: (context, ref, child) {
-                      final commentsAsync = ref.watch(
+                      final AsyncValue<List<CommentModel>> comments = ref.watch(
                         commentsProvider(widget.video.videoId),
                       );
-
-                      return commentsAsync.when(
-                        loading: () =>
-                            const SizedBox(), // show nothing while loading
-
-                        error: (err, stack) =>
-                            const SizedBox(), // avoid UI crash
-
-                        data: (comments) {
-                          if (comments.isEmpty) {
-                            return const Padding(
-                              padding: EdgeInsets.only(left: 10, top: 12),
-                              child: Text(
-                                "Be the first to comment...",
-                                style: TextStyle(fontSize: 13.5),
-                              ),
-                            );
-                          }
-
-                          return VideoFirstComment(
-                            comments: comments,
-                            user: user.value!,
-                          );
-                        },
+                      if (comments.value!.isEmpty) {
+                        return Center(
+                          child: const Text("No Comments are Avaailable"),
+                        );
+                      }
+                      return VideoFirstComment(
+                        comments: comments.value!,
+                        user: user.value!,
                       );
                     },
                   ),
+                  // child: Consumer(
+                  //   builder: (context, ref, child) {
+                  //     final commentsAsync = ref.watch(
+                  //       commentsProvider(widget.video.videoId),
+                  //     );
+
+                  //     return commentsAsync.when(
+                  //       loading: () =>
+                  //           const SizedBox(), // show nothing while loading
+
+                  //       error: (err, stack) =>
+                  //           const SizedBox(), // avoid UI crash
+
+                  //       data: (comments) {
+                  //         if (comments.isEmpty) {
+                  //           return const Padding(
+                  //             padding: EdgeInsets.only(left: 10, top: 12),
+                  //             child: Text(
+                  //               "Be the first to comment...",
+                  //               style: TextStyle(fontSize: 13.5),
+                  //             ),
+                  //           );
+                  //         }
+
+                  //         return VideoFirstComment(
+                  //           comments: comments.!,
+                  //           user: user.value!,
+                  //         );
+                  //       },
+                  //     );
+                  //   },
+                  // ),
                 ),
               ),
             ),
