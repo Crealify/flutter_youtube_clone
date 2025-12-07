@@ -139,8 +139,8 @@ class _UserChannelPageState extends State<UserChannelPage> {
                                 ? Padding(
                                     padding: const EdgeInsets.only(top: 14),
                                     child: Center(
-                                      child: const Text(
-                                        "No VIdeo",
+                                      child: Text(
+                                        "${user.displayName}' Videos ",
                                         style: TextStyle(
                                           fontSize: 23,
                                           fontWeight: FontWeight.bold,
@@ -155,7 +155,7 @@ class _UserChannelPageState extends State<UserChannelPage> {
                                     ),
                                     //some problem in video models so video count is not updated
                                     child: Text(
-                                      "${user.displayName}' Videos ",
+                                      "NO Video Published",
                                       style: TextStyle(
                                         fontSize: 23,
                                         fontWeight: FontWeight.bold,
@@ -177,33 +177,28 @@ class _UserChannelPageState extends State<UserChannelPage> {
                       .watch(eachChannelVideosProvider(widget.userId))
                       .when(
                         data: (videos) => Padding(
-                          padding: EdgeInsets.only(
-                            top: MediaQuery.sizeOf(context).height * 0.2,
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 10,
+                            vertical: 12,
                           ),
-                          child: SizedBox(
-                            height: 80,
-                            child: GridView.builder(
-                              shrinkWrap: true,
-                              physics: NeverScrollableScrollPhysics(),
-
-                              gridDelegate:
-                                  const SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 2,
-                                    crossAxisSpacing: 8,
-                                    mainAxisSpacing: 8,
-                                  ),
-                              itemCount: videos.length,
-                              itemBuilder: (context, index) {
-                                if (videos.isNotEmpty) {
-                                  return Post(video: videos[index]);
-                                }
-                                return const SizedBox();
-                              },
-                            ),
+                          child: GridView.builder(
+                            shrinkWrap: true, // 🔥 fix overflow
+                            physics:
+                                const NeverScrollableScrollPhysics(), // 🔥 scroll handled by parent SingleChildScrollView
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  crossAxisSpacing: 8,
+                                  mainAxisSpacing: 8,
+                                  childAspectRatio: 0.72,
+                                ),
+                            itemCount: videos.length,
+                            itemBuilder: (context, index) {
+                              return Post(video: videos[index]);
+                            },
                           ),
                         ),
-
-                        error: (error, stackTrace) => const ErrorPage(),
+                        error: (_, __) => const ErrorPage(),
                         loading: () => const Loader(),
                       );
                 },

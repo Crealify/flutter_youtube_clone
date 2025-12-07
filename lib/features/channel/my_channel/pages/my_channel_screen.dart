@@ -4,8 +4,8 @@ import 'package:youtube_clone/cores/screens/error_page.dart';
 import 'package:youtube_clone/cores/screens/loader.dart';
 import 'package:youtube_clone/features/auth/provider/user_provider.dart';
 import 'package:youtube_clone/features/channel/my_channel/parts/bottons.dart';
-import 'package:youtube_clone/features/channel/my_channel/parts/tap_bar.dart';
-import 'package:youtube_clone/features/channel/my_channel/parts/tap_bar_view.dart';
+import 'package:youtube_clone/features/channel/my_channel/parts/tap_bar_page.dart';
+import 'package:youtube_clone/features/channel/my_channel/parts/tap_bar_view_page.dart';
 import 'package:youtube_clone/features/channel/my_channel/parts/top_header.dart';
 
 class MyChannelScreen extends ConsumerWidget {
@@ -26,11 +26,27 @@ class MyChannelScreen extends ConsumerWidget {
                     children: [
                       // top header
                       TopHeader(user: currentUser),
-                      // const Text("More about Crealify!"),
-                      const TapBottons(),
-                      // tab bar
-                      const TapBarPage(),
-                      const TapViewPages(),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 5),
+                        child: Center(
+                          child: const Text("More about Crealify!"),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 2),
+                        child: const TapBottons(),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 1),
+                        child: const TapBarPage(),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 2),
+                        child: SizedBox(
+                          height: 400,
+                          child: const TapBarViewPages(),
+                        ),
+                      ),
                     ],
                   ),
                 ),

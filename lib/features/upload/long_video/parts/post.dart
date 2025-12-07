@@ -1,13 +1,10 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:youtube_clone/features/auth/model/user_model.dart';
 import 'package:youtube_clone/features/auth/provider/user_provider.dart';
-import 'package:youtube_clone/features/upload/long_video/parts/video.dart';
-
 import 'package:youtube_clone/features/upload/long_video/video_model.dart';
+import 'package:youtube_clone/features/upload/long_video/parts/video.dart';
 
 class Post extends ConsumerWidget {
   final VideoModel video;
@@ -15,87 +12,125 @@ class Post extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final AsyncValue<UserModel> userModel = ref.watch(
-      anyUserDataProvider(video.userId),
-    );
-    userModel.whenData((user) => user);
+    final userAsync = ref.watch(anyUserDataProvider(video.userId));
 
-    final user = userModel.whenData((user) => user);
     return GestureDetector(
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Video(video: video)),
+          MaterialPageRoute(builder: (_) => Video(video: video)),
         );
-        //adding viewFeature
+
+        // Add view counter
         FirebaseFirestore.instance
             .collection("videos")
             .doc(video.userId)
             .update({"views": FieldValue.increment(1)});
       },
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CachedNetworkImage(imageUrl: video.thumbnail),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0, left: 5),
-                child: CircleAvatar(
-                  radius: 20,
-                  backgroundColor: Colors.grey,
-                  backgroundImage:
-                      user.value?.profilePic != null &&
-                          user.value!.profilePic.isNotEmpty
-                      ? CachedNetworkImageProvider(user.value!.profilePic)
-                      : null,
-                  child: user.value?.profilePic == null
-                      ? Icon(Icons.person)
-                      : null,
-                ),
-                // child: CircleAvatar(
-                //   radius: 20,
-                //   backgroundColor: Colors.grey,
-                //   backgroundImage: CachedNetworkImageProvider(
-                //     user.value!.profilePic,
-                //   ),
-                // ),
+          // --------------------------------------------
+          // VIDEO THUMBNAIL
+          // --------------------------------------------
+          ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: AspectRatio(
+              aspectRatio: 16 / 9,
+              child: CachedNetworkImage(
+                imageUrl: video.thumbnail,
+                fit: BoxFit.cover,
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: Text(
-                  video.title,
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ),
-              const Spacer(),
-              IconButton(onPressed: () {}, icon: Icon(Icons.more_vert)),
-            ],
+            ),
           ),
-          Padding(
-            padding: EdgeInsets.only(
-              left: MediaQuery.sizeOf(context).width * 0.14,
-            ),
-            child: Row(
-              children: [
-                Text(
-                  user.value!.displayName,
-                  style: TextStyle(color: Colors.blueGrey),
+
+          const SizedBox(height: 8),
+
+          // --------------------------------------------
+          // CHANNEL AVATAR + VIDEO TITLE + MORE BUTTON
+          // --------------------------------------------
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Channel avatar
+              userAsync.when(
+                data: (user) {
+                  return CircleAvatar(
+                    radius: 18,
+                    backgroundColor: Colors.grey[300],
+                    backgroundImage: user.profilePic.isNotEmpty
+                        ? CachedNetworkImageProvider(user.profilePic)
+                        : null,
+                    child: user.profilePic.isEmpty
+                        ? const Icon(Icons.person, size: 20)
+                        : null,
+                  );
+                },
+                loading: () => const CircleAvatar(
+                  radius: 18,
+                  backgroundColor: Colors.grey,
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: Text(
-                    video.views == 0 ? "No View" : "${video.views}",
-                    style: const TextStyle(color: Colors.blueGrey),
-                  ),
+                error: (_, __) => const CircleAvatar(
+                  radius: 18,
+                  backgroundColor: Colors.grey,
+                  child: Icon(Icons.person),
                 ),
-                const Text(
-                  "a moment ago",
-                  style: TextStyle(color: Colors.blueGrey),
+              ),
+
+              const SizedBox(width: 8),
+
+              // TITLE + views + time
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Video title
+                    Text(
+                      video.title,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 14,
+                      ),
+                    ),
+
+                    const SizedBox(height: 4),
+
+                    // Subtitle (username + views + time)
+                    userAsync.when(
+                      data: (user) {
+                        return Text(
+                          "${user.displayName} · "
+                          "${video.views == 0 ? "No views" : "${video.views} views"} · "
+                          "just now",
+                          style: TextStyle(
+                            color: Colors.grey[600],
+                            fontSize: 12,
+                          ),
+                        );
+                      },
+                      loading: () => Text(
+                        "Loading...",
+                        style: TextStyle(color: Colors.grey[600], fontSize: 12),
+                      ),
+                      error: (_, __) => Text(
+                        "${video.views} views · just now",
+                        style: TextStyle(color: Colors.grey[600], fontSize: 12),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+
+              // More button
+              IconButton(
+                icon: const Icon(Icons.more_vert),
+                onPressed: () {},
+                padding: EdgeInsets.zero,
+                constraints: const BoxConstraints(),
+              ),
+            ],
           ),
         ],
       ),

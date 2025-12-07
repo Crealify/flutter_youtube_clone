@@ -1,3 +1,4 @@
+//
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -6,58 +7,48 @@ import 'package:youtube_clone/cores/screens/loader.dart';
 import 'package:youtube_clone/features/channel/users_channel/provider/channel_provider.dart';
 import 'package:youtube_clone/features/upload/long_video/parts/post.dart';
 
-class HomeChannelPages extends StatelessWidget {
+class HomeChannelPages extends ConsumerWidget {
   const HomeChannelPages({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Consumer(
-        builder: (context, ref, child) {
-          return ref
-              .watch(
-                eachChannelVideosProvider(
-                  FirebaseAuth.instance.currentUser!.uid,
-                ),
-              )
-              .when(
-                data: (videos) => Padding(
-                  padding: EdgeInsets.only(
-                    top: MediaQuery.sizeOf(context).height * 0.2,
+  Widget build(BuildContext context, WidgetRef ref) {
+    return ref
+        .watch(
+          eachChannelVideosProvider(FirebaseAuth.instance.currentUser!.uid),
+        )
+        .when(
+          data: (videos) => videos.isEmpty
+              ? const Center(
+                  child: Text(
+                    "No Video",
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
-                  //child:video.length == 0
-                  child: videos.isEmpty
-                      ? Center(
-                          child: Text(
-                            "No Video",
-                            style: TextStyle(
-                              fontSize: 23,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        )
-                      : GridView.builder(
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2,
-                                crossAxisSpacing: 8,
-                                mainAxisSpacing: 8,
-                              ),
-                          itemCount: videos.length,
-                          itemBuilder: (context, index) {
-                            if (videos.isNotEmpty) {
-                              return Post(video: videos[index]);
-                            }
-                            return const SizedBox();
-                          },
+                )
+              : Padding(
+                  padding: const EdgeInsets.only(
+                    top: 10,
+                    bottom: 10,
+                    right: 4,
+                    left: 4,
+                  ),
+                  child: GridView.builder(
+                    shrinkWrap: true, // 🔥 Important
+                    physics: const ClampingScrollPhysics(), //
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          childAspectRatio: 0.9,
+                          crossAxisSpacing: 10,
+                          mainAxisSpacing: 2,
                         ),
+                    itemCount: videos.length,
+                    itemBuilder: (context, index) {
+                      return Post(video: videos[index]);
+                    },
+                  ),
                 ),
-
-                error: (error, stackTrace) => const ErrorPage(),
-                loading: () => const Loader(),
-              );
-        },
-      ),
-    );
+          error: (_, __) => const ErrorPage(),
+          loading: () => const Loader(),
+        );
   }
 }

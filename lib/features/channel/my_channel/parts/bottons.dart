@@ -7,48 +7,45 @@ class TapBottons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 10),
-      child: Row(
-        children: [
-          Expanded(
-            flex: 3,
+    return Row(
+      children: [
+        Expanded(
+          flex: 3,
 
-            child: Container(
-              height: 40,
-              decoration: const BoxDecoration(
-                color: softBlueGreyBackGround,
-                borderRadius: BorderRadius.all(Radius.circular(9)),
-              ),
-              child: TextButton(
-                onPressed: () {},
-                child: Text(
-                  "Manage Videos",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    // fontSize: 10,
-                  ),
+          child: Container(
+            height: 40,
+            decoration: const BoxDecoration(
+              color: softBlueGreyBackGround,
+              borderRadius: BorderRadius.all(Radius.circular(9)),
+            ),
+            child: TextButton(
+              onPressed: () {},
+              child: Text(
+                "Manage Videos",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  // fontSize: 10,
                 ),
               ),
             ),
           ),
-          Expanded(
-            child: ImageButton(
-              image: "pen.png",
-              onPressed: () {},
-              haveColor: true,
-            ),
+        ),
+        Expanded(
+          child: ImageButton(
+            image: "pen.png",
+            onPressed: () {},
+            haveColor: true,
           ),
-          Expanded(
-            child: ImageButton(
-              image: "time-watched.png",
-              onPressed: () {},
-              haveColor: true,
-            ),
+        ),
+        Expanded(
+          child: ImageButton(
+            image: "time-watched.png",
+            onPressed: () {},
+            haveColor: true,
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
