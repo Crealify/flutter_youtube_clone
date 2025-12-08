@@ -412,7 +412,7 @@ class _VideoState extends ConsumerState<Video> {
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Colors.grey.shade300,
+                    color: const Color.fromARGB(255, 224, 224, 224),
                     borderRadius: BorderRadius.all(Radius.circular(8)),
                   ),
                   height: 80,
@@ -433,38 +433,7 @@ class _VideoState extends ConsumerState<Video> {
                       );
                     },
                   ),
-                  // child: Consumer(
-                  //   builder: (context, ref, child) {
-                  //     final commentsAsync = ref.watch(
-                  //       commentsProvider(widget.video.videoId),
-                  //     );
 
-                  //     return commentsAsync.when(
-                  //       loading: () =>
-                  //           const SizedBox(), // show nothing while loading
-
-                  //       error: (err, stack) =>
-                  //           const SizedBox(), // avoid UI crash
-
-                  //       data: (comments) {
-                  //         if (comments.isEmpty) {
-                  //           return const Padding(
-                  //             padding: EdgeInsets.only(left: 10, top: 12),
-                  //             child: Text(
-                  //               "Be the first to comment...",
-                  //               style: TextStyle(fontSize: 13.5),
-                  //             ),
-                  //           );
-                  //         }
-
-                  //         return VideoFirstComment(
-                  //           comments: comments.!,
-                  //           user: user.value!,
-                  //         );
-                  //       },
-                  //     );
-                  //   },
-                  // ),
                 ),
               ),
             ),

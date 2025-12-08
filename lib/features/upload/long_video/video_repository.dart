@@ -57,3 +57,11 @@ class VideoRepository {
     }
   }
 }
+
+Future<void> increaseUserVideoCount(String userId) async {
+  final userRef = FirebaseFirestore.instance.collection('users').doc(userId);
+
+  await userRef.update({
+    'videos': FieldValue.increment(1),
+  });
+}
