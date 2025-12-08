@@ -143,11 +143,11 @@ Below are some UI previews of the app.
 | - | - | - |
 |   |   |   |
 
-<img src="assets/screenshots/Screenshot 2025-12-08 174256.png" width="260"/>  
+<img src="assets/screenshots/a.png" width="260"/>  
 |  
-<img src="assets/screenshots/Screenshot 2025-12-08 174500.png" width="260"/>  
+<img src="assets/screenshots/b.png" width="260"/>  
 |  
-<img src="assets/screenshots/Screenshot 2025-12-08 174809.png" width="260"/>  
+<img src="assets/screenshots/c.png" width="260"/>  
 |
 
 </div>
