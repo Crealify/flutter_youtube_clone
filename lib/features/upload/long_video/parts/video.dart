@@ -22,8 +22,6 @@ import 'package:youtube_clone/features/upload/long_video/video_repository.dart';
 import 'package:youtube_clone/features/upload/long_video/widgets/first_video_comment.dart';
 import 'package:youtube_clone/features/upload/long_video/widgets/video_externel_buttons.dart';
 
-import '../../comments/comment_model.dart';
-
 class Video extends ConsumerStatefulWidget {
   final VideoModel video;
   const Video({super.key, required this.video});
@@ -235,6 +233,62 @@ class _VideoState extends ConsumerState<Video> {
                 ],
               ),
             ),
+            // Padding(
+            //   padding: const EdgeInsets.only(left: 12, top: 9, right: 9),
+            //   child: Row(
+            //     children: [
+            //       CircleAvatar(
+            //         radius: 16,
+            //         backgroundColor: Colors.grey,
+            //         backgroundImage: CachedNetworkImageProvider(
+            //           user.value!.profilePic,
+            //         ),
+            //       ),
+            //       Padding(
+            //         padding: const EdgeInsets.only(left: 10, right: 5),
+            //         child: Text(
+            //           user.value!.displayName,
+            //           style: const TextStyle(fontWeight: FontWeight.bold),
+            //         ),
+            //       ),
+            //       Padding(
+            //         padding: const EdgeInsets.only(right: 5.0, left: 6),
+            //         child: Text(
+            //           user.value!.subscriptions.isEmpty
+            //               ? "No Subscriptions"
+            //               : "${user.value!.subscriptions.length} Subscriptions",
+            //           style: TextStyle(
+            //             fontSize: 13,
+            //             fontWeight: FontWeight.w500,
+            //           ),
+            //         ),
+            //       ),
+            //       Spacer(),
+            //       SizedBox(
+            //         height: 35,
+            //         width: 96,
+            //         child: Padding(
+            //           padding: const EdgeInsets.only(right: 2),
+            //           child: FlatButton(
+            //             text: "Subscribe",
+            //             onPressed: () async {
+            //               //subscribe channel
+            //               await ref
+            //                   .watch(subscribeChannelProvider)
+            //                   .subscribeChannel(
+            //                     userId: user.value!.userId,
+            //                     currentUserId:
+            //                         FirebaseAuth.instance.currentUser!.uid,
+            //                     subscriptions: user.value!.subscriptions,
+            //                   );
+            //             },
+            //             colour: Colors.red.shade900,
+            //           ),
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
             Padding(
               padding: const EdgeInsets.only(left: 12, top: 9, right: 9),
               child: Row(
@@ -246,26 +300,41 @@ class _VideoState extends ConsumerState<Video> {
                       user.value!.profilePic,
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 5),
-                    child: Text(
-                      user.value!.displayName,
-                      style: const TextStyle(fontWeight: FontWeight.bold),
+
+                  const SizedBox(width: 10),
+
+                  // ---- FIX: Wrap name and subscriptions in Expanded ----
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Username (will shrink safely)
+                        Text(
+                          user.value!.displayName,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        ),
+
+                        const SizedBox(height: 2),
+
+                        // Subscription count (also safe)
+                        Text(
+                          user.value!.subscriptions.isEmpty
+                              ? "No Subscriptions"
+                              : "${user.value!.subscriptions.length} Subscriptions",
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 5.0, left: 6),
-                    child: Text(
-                      user.value!.subscriptions.isEmpty
-                          ? "No Subscriptions"
-                          : "${user.value!.subscriptions.length} Subscriptions",
-                      style: TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
-                  Spacer(),
+
+                  // ---- Subscribe Button ----
                   SizedBox(
                     height: 35,
                     width: 96,
@@ -274,7 +343,6 @@ class _VideoState extends ConsumerState<Video> {
                       child: FlatButton(
                         text: "Subscribe",
                         onPressed: () async {
-                          //subscribe channel
                           await ref
                               .watch(subscribeChannelProvider)
                               .subscribeChannel(
@@ -291,6 +359,7 @@ class _VideoState extends ConsumerState<Video> {
                 ],
               ),
             ),
+
             Padding(
               padding: const EdgeInsets.only(left: 9, top: 10.5, right: 9),
               child: SingleChildScrollView(

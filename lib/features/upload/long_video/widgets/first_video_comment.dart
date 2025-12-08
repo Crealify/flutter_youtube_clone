@@ -1,7 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:youtube_clone/features/auth/model/user_model.dart';
@@ -92,8 +91,11 @@ class VideoFirstComment extends StatelessWidget {
         Row(
           children: [
             CircleAvatar(
-              radius: 15,
-              backgroundImage: CachedNetworkImageProvider(user.profilePic),
+              radius: 13,
+
+              backgroundImage: AssetImage("assets/icons/your-data.png"),
+              backgroundColor: Colors.white,
+              // backgroundImage: CachedNetworkImageProvider(user.profilePic),
             ),
             const SizedBox(width: 10),
 
