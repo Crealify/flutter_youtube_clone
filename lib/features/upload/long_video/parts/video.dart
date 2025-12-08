@@ -401,6 +401,41 @@ class _VideoState extends ConsumerState<Video> {
               ),
             ),
             //Comment Box
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+            //   child: GestureDetector(
+            //     onTap: () {
+            //       showModalBottomSheet(
+            //         context: context,
+            //         builder: (context) => CommentSheet(video: widget.video),
+            //       );
+            //     },
+            //     child: Container(
+            //       decoration: BoxDecoration(
+            //         color: const Color.fromARGB(255, 224, 224, 224),
+            //         borderRadius: BorderRadius.all(Radius.circular(8)),
+            //       ),
+            //       height: 100,
+            //       width: 200,
+            //       child: Consumer(
+            //         builder: (context, ref, child) {
+            //           final AsyncValue<List<CommentModel>> comments = ref.watch(
+            //             commentsProvider(widget.video.videoId),
+            //           );
+            //           if (comments.value!.isEmpty) {
+            //             return Center(
+            //               child: const Text("Be the first comment "),
+            //             );
+            //           }
+            //           return VideoFirstComment(
+            //             comments: comments.value!,
+            //             user: user.value!,
+            //           );
+            //         },
+            //       ),
+            //     ),
+            //   ),
+            // ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
               child: GestureDetector(
@@ -419,21 +454,35 @@ class _VideoState extends ConsumerState<Video> {
                   width: 200,
                   child: Consumer(
                     builder: (context, ref, child) {
-                      final AsyncValue<List<CommentModel>> comments = ref.watch(
+                      final commentsAsync = ref.watch(
                         commentsProvider(widget.video.videoId),
                       );
-                      if (comments.value!.isEmpty) {
-                        return Center(
-                          child: const Text("No Comments are Avaailable"),
-                        );
-                      }
-                      return VideoFirstComment(
-                        comments: comments.value!,
-                        user: user.value!,
+
+                      return commentsAsync.when(
+                        loading: () =>
+                            const Center(child: CircularProgressIndicator()),
+
+                        error: (e, st) =>
+                            Center(child: Text("Error loading comments")),
+
+                        data: (comments) {
+                          if (comments.isEmpty) {
+                            return const Center(
+                              child: Text("Be the first comment"),
+                            );
+                          }
+
+                          return Padding(
+                            padding: const EdgeInsets.only(top: 10, left: 10),
+                            child: VideoFirstComment(
+                              comments: comments,
+                              user: user.value!, // YOUR USER PROVIDER VALUE
+                            ),
+                          );
+                        },
                       );
                     },
                   ),
-
                 ),
               ),
             ),
