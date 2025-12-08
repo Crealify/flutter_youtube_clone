@@ -10,7 +10,6 @@ import 'package:video_player/video_player.dart';
 import 'package:youtube_clone/cores/colors.dart';
 import 'package:youtube_clone/cores/screens/error_page.dart';
 import 'package:youtube_clone/cores/screens/loader.dart';
-import 'package:youtube_clone/cores/widgets/flat_button.dart';
 import 'package:youtube_clone/features/auth/model/user_model.dart';
 import 'package:youtube_clone/features/auth/provider/user_provider.dart';
 import 'package:youtube_clone/features/channel/users_channel/subscribe_repository.dart';
@@ -31,6 +30,7 @@ class Video extends ConsumerStatefulWidget {
 }
 
 class _VideoState extends ConsumerState<Video> {
+  bool isSubscribed = false;
   bool isShowIcons = false;
   bool isPlaying = false;
   VideoPlayerController? _controller;
@@ -337,23 +337,27 @@ class _VideoState extends ConsumerState<Video> {
                   // ---- Subscribe Button ----
                   SizedBox(
                     height: 35,
-                    width: 96,
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 2),
-                      child: FlatButton(
-                        text: "Subscribe",
-                        onPressed: () async {
-                          await ref
-                              .watch(subscribeChannelProvider)
-                              .subscribeChannel(
-                                userId: user.value!.userId,
-                                currentUserId:
-                                    FirebaseAuth.instance.currentUser!.uid,
-                                subscriptions: user.value!.subscriptions,
-                              );
-                        },
-                        colour: Colors.red.shade900,
+                    child: TextButton(
+                      onPressed: () async {
+                        await ref
+                            .watch(subscribeChannelProvider)
+                            .subscribeChannel(
+                              userId: user.value!.userId,
+                              currentUserId:
+                                  FirebaseAuth.instance.currentUser!.uid,
+                              subscriptions: user.value!.subscriptions,
+                            );
+                        setState(() {
+                          isSubscribed = true; // mark as subscribed
+                        });
+                      },
+                      style: TextButton.styleFrom(
+                        backgroundColor: isSubscribed
+                            ? Colors.grey.shade700
+                            : Colors.red.shade900,
+                        foregroundColor: Colors.white,
                       ),
+                      child: Text(isSubscribed ? "Subscribed" : "Subscribe"),
                     ),
                   ),
                 ],

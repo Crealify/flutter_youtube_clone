@@ -9,19 +9,21 @@ class Subscribe {
   FirebaseFirestore? firestore;
   Subscribe({this.firestore});
 
+ 
   Future<void> subscribeChannel({
-    required userId,
-    required currentUserId,
-    required subscriptions,
+    required String userId, // channel user id
+    required String currentUserId, // current logged in user id
+    required List<String> subscriptions,
   }) async {
-    if (subscriptions.contains([currentUserId])) {
+    if (subscriptions.contains(currentUserId)) {
+      // Unsubscribe
       await firestore!.collection("user").doc(userId).update({
-        "supscriptions": FieldValue.arrayRemove([currentUserId]),
+        "subscriptions": FieldValue.arrayRemove([currentUserId]),
       });
-    }
-    if (!subscriptions.contains([currentUserId])) {
+    } else {
+      // Subscribe
       await firestore!.collection("user").doc(userId).update({
-        "supscriptions": FieldValue.arrayUnion([currentUserId]),
+        "subscriptions": FieldValue.arrayUnion([currentUserId]),
       });
     }
   }
