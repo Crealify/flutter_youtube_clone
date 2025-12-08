@@ -127,17 +127,34 @@ Below are some UI previews of the app.
 
 |                                                                       |                                                                       |                                                                       |
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| <img src="assets/screenshots/Screenshot_1765194697.png" width="250"/> | <img src="assets/screenshots/Screenshot_1765194707.png" width="250"/> | <img src="assets/screenshots/Screenshot_1765194713.png" width="250"/> |
-| <img src="assets/screenshots/Screenshot_1765194763.png" width="250"/> | <img src="assets/screenshots/Screenshot_1765194769.png" width="250"/> | <img src="assets/screenshots/Screenshot_1765194785.png" width="250"/> |
-| <img src="assets/screenshots/Screenshot_1765194791.png" width="250"/> | <img src="assets/screenshots/Screenshot_1765194802.png" width="250"/> | <img src="assets/screenshots/Screenshot_1765194830.png" width="250"/> |
-| <img src="assets/screenshots/Screenshot_1765194839.png" width="250"/> | <img src="assets/screenshots/Screenshot_1765194926.png" width="250"/> | <img src="assets/screenshots/Screenshot_1765194957.png" width="250"/> |
-| <img src="assets/screenshots/Screenshot_1765195009.png" width="250"/> | <img src="assets/screenshots/Screenshot_1765195018.png" width="250"/> | <img src="assets/screenshots/Screenshot_1765195118.png" width="250"/> |
-| <img src="assets/screenshots/Screenshot_1765195126.png" width="250"/> | <img src="assets/screenshots/Screenshot_1765195264.png" width="250"/> | <img src="assets/screenshots/Screenshot_1765195290.png" width="250"/> |
-| <img src="assets/screenshots/Screenshot_1765195312.png" width="250"/> |                                                                       |                                                                       |
+| <img src="assets/screenshots/1.png" width="250"/> | <img src="assets/screenshots/2.png" width="250"/> | <img src="assets/screenshots/3.png" width="250"/> |
+| <img src="assets/screenshots/4.png" width="250"/> | <img src="assets/screenshots/5.png" width="250"/> | <img src="assets/screenshots/6.png" width="250"/> |
+| <img src="assets/screenshots/6a.png" width="250"/> | <img src="assets/screenshots/7.png" width="250"/> | <img src="assets/screenshots/8.png" width="250"/> |
+| <img src="assets/screenshots/9.png" width="250"/> | <img src="assets/screenshots/10.png" width="250"/> | <img src="assets/screenshots/11.png" width="250"/> |
+| <img src="assets/screenshots/12.png" width="250"/> | <img src="assets/screenshots/13.png" width="250"/> | <img src="assets/screenshots/14.png" width="250"/> |
+| <img src="assets/screenshots/15.png" width="250"/> | <img src="assets/screenshots/16.png" width="250"/> | <img src="assets/screenshots/17.png" width="250"/> |
+| <img src="assets/screenshots/18.png" width="250"/> | <img src="assets/screenshots/19.png" width="250"/>                                                                       |                                                                       |
+
+</div>
+---
+<div align="center">
+
+|   |   |   |
+| - | - | - |
+|   |   |   |
+
+<img src="assets/screenshots/Screenshot 2025-12-08 174256.png" width="260"/>  
+|  
+<img src="assets/screenshots/Screenshot 2025-12-08 174500.png" width="260"/>  
+|  
+<img src="assets/screenshots/Screenshot 2025-12-08 174809.png" width="260"/>  
+|
 
 </div>
 
 ---
+
+
 # 🗺 Roadmap
 
 - Shorts UI  
