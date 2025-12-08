@@ -118,21 +118,26 @@ flutter run
 
 ---
 
-📸 Screenshots
+## 📸 Screenshots
 
-Add your screenshots inside:
-assets/screenshots/
+Below are some UI previews of the app.
+
+
+<div align="center">
+
+|                                                                       |                                                                       |                                                                       |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| <img src="assets/screenshots/Screenshot_1765194697.png" width="250"/> | <img src="assets/screenshots/Screenshot_1765194707.png" width="250"/> | <img src="assets/screenshots/Screenshot_1765194713.png" width="250"/> |
+| <img src="assets/screenshots/Screenshot_1765194763.png" width="250"/> | <img src="assets/screenshots/Screenshot_1765194769.png" width="250"/> | <img src="assets/screenshots/Screenshot_1765194785.png" width="250"/> |
+| <img src="assets/screenshots/Screenshot_1765194791.png" width="250"/> | <img src="assets/screenshots/Screenshot_1765194802.png" width="250"/> | <img src="assets/screenshots/Screenshot_1765194830.png" width="250"/> |
+| <img src="assets/screenshots/Screenshot_1765194839.png" width="250"/> | <img src="assets/screenshots/Screenshot_1765194926.png" width="250"/> | <img src="assets/screenshots/Screenshot_1765194957.png" width="250"/> |
+| <img src="assets/screenshots/Screenshot_1765195009.png" width="250"/> | <img src="assets/screenshots/Screenshot_1765195018.png" width="250"/> | <img src="assets/screenshots/Screenshot_1765195118.png" width="250"/> |
+| <img src="assets/screenshots/Screenshot_1765195126.png" width="250"/> | <img src="assets/screenshots/Screenshot_1765195264.png" width="250"/> | <img src="assets/screenshots/Screenshot_1765195290.png" width="250"/> |
+| <img src="assets/screenshots/Screenshot_1765195312.png" width="250"/> |                                                                       |                                                                       |
+
+</div>
 
 ---
-
-Recommended filenames:
-assets/screenshots/home.png
-assets/screenshots/player.png
-assets/screenshots/upload.png
-Screenshots will appear here once added.
-
----
-
 # 🗺 Roadmap
 
 - Shorts UI  
@@ -166,3 +171,5 @@ This project is licensed under the MIT License.
 ---
 
 **Made with Crealify using Flutter**
+
+
